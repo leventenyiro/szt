@@ -85,3 +85,4 @@ func create_prop_map():
 					
 func create_castle():
 	#ide a kód
+	$BlueCastle.set_cell(1,1,0)
