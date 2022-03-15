@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Map/snow-expansion.png" type="Texture" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
+[ext_resource path="res://Map/red_castle.png" type="Texture" id=3]
+[ext_resource path="res://Map/blue_castle.png" type="Texture" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "snow-expansion.png 0"
@@ -184,6 +186,10 @@ load_path = "res://.import/snow-expansion.png-803d8658d68e6e113f484137eea12d16.s
 0/shapes = [  ]
 0/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=7]
+resource_local_to_scene = true
+extents = Vector2( 536.5, 542 )
+
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -218,3 +224,31 @@ compatibility_mode = true
 centered_textures = true
 collision_use_kinematic = true
 format = 1
+
+[node name="RedCastle" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="RedCastle"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="RedCastle/RigidBody2D"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedCastle/RigidBody2D"]
+position = Vector2( -1.5, 3 )
+shape = SubResource( 7 )
+
+[node name="BlueCastle" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="BlueCastle"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="BlueCastle/RigidBody2D"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlueCastle/RigidBody2D"]
+position = Vector2( -1.5, 3 )
+shape = SubResource( 7 )

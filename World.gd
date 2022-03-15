@@ -25,6 +25,7 @@ func generate():
 	create_water_map()
 	create_road_map()
 	create_prop_map()
+	create_castle()
 
 func create_grass_map():
 	for x in map_size.x:
@@ -81,3 +82,6 @@ func create_prop_map():
 							break
 				if chance < tree_chance and not tree_around:
 					$Trees.set_cell(x,y,0)
+					
+func create_castle():
+	#ide a kód
