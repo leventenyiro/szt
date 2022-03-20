@@ -25,7 +25,7 @@ func generate():
 	create_water_map()
 	create_road_map()
 	create_prop_map()
-	create_castle()
+	create_castles()
 
 func create_grass_map():
 	for x in map_size.x:
@@ -87,4 +87,19 @@ func create_castles():
 	#ide a kód
 	# addig keresse a helyét, amíg nem vízre rakja és a másiktól ellentétes irányban legyen
 	#$Water.get_cell()
-	$BlueCastle.set_cell(1,1,0)
+	var is_blue_ready = false
+	while (!is_blue_ready):
+		var x = rand_range(0, map_size.x / 4)
+		var y = rand_range(0, map_size.y / 4)
+		if $Water.get_cell(x, y) == -1:
+			$BlueCastle.set_cell(x, y, 0)
+			is_blue_ready = true
+		# ha van ott fa
+		
+	var is_red_ready = false
+	while (!is_red_ready):
+		var x = rand_range(map_size.x / 4, map_size.x / 2)
+		var y = rand_range(map_size.y / 4, map_size.y / 2)
+		if $Water.get_cell(x, y) == -1:
+			$RedCastle.set_cell(x, y, 0)
+			is_red_ready = true
