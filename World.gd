@@ -83,6 +83,8 @@ func create_prop_map():
 				if chance < tree_chance and not tree_around:
 					$Trees.set_cell(x,y,0)
 					
-func create_castle():
+func create_castles():
 	#ide a kód
+	# addig keresse a helyét, amíg nem vízre rakja és a másiktól ellentétes irányban legyen
+	#$Water.get_cell()
 	$BlueCastle.set_cell(1,1,0)
