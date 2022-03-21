@@ -89,26 +89,30 @@ func distance(x1, y1, x2, y2):
 	
 func create_castles():
 	# nem lehet a map szélén, vízben, illetve a kettő legyen távol egymástól
-	var is_castles_ready = false
-	while (!is_castles_ready):
-		var is_blue_ready = false
-		var x1 = 0
-		var y1 = 0
-		while (!is_blue_ready):
-			x1 = round(rand_range(0, map_size.x / 4))
-			y1 = round(rand_range(0, map_size.y / 4))
-			if $Water.get_cell(x1, y1) == -1:
-
-				is_blue_ready = true
-			
-		var is_red_ready = false
-		while (!is_red_ready):
-			var x2 = round(rand_range(map_size.x / 4, map_size.x / 2))
-			var y2 = round(rand_range(map_size.y / 4, map_size.y / 2))
-			#if $Water.get_cell(x2, y2) == -1 and distance(x1, y1, x2, y2) >= 20:
-			#print(distance(x1, y1, x2, y2))
-			if distance(x1, y1, x2, y2) >= 20:
-
-				is_red_ready = true
-	#$BlueCastle.set_cell(x1, y1, 0)
-					$RedCastle.set_cell(x2, y2, 0)
+	#var is_castles_ready = false
+	#var x_blue
+	#var y_blue
+	#var x_red
+	#var y_red
+	#while !is_castles_ready:
+	#	x_blue = rand_range(1, map_size.x / 4 - 1)
+	#	y_blue = rand_range(1, map_size.y / 4 - 1)
+	#	x_red = rand_range(1, map_size.x / 4 - 1)
+	#	y_red = rand_range(1, map_size.y / 4 - 1)
+	#	var is_blue_in_water = $Water.get_cell(x_blue, y_blue)
+	#	print(is_blue_in_water)
+	#	if distance(x_blue, y_blue, x_red, y_red) >= 10 and $Water.get_cell(x_blue, y_blue) == -1 and $Water.get_cell(x_red, y_red) == -1:
+	#		is_castles_ready = true
+	#print("Blue: " + x_blue + " " + y_blue)
+	#print("Red: " + x_red + " " + y_red)
+	#$BlueCastle.set_cell(x_blue, y_blue, 0)
+	#$RedCastle.set_cell(x_red, y_red, 0)
+	#$RedCastle.set_cell(5,21, 0)
+	
+	var available_positions = []
+	
+	for i in range(3,map_size.x-3, 1):
+		for j in range(3,map_size.y-3, 1):
+			available_positions.append(Vector2(i, j))
+	var blue_position = available_positions[rand_range(0, available_positions.size())]
+	$BlueCastle.set_cell(blue_position.x, blue_position.y, 0)
