@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Map/snow-expansion.png" type="Texture" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
-[ext_resource path="res://Map/troop_tileset.png" type="Texture" id=3]
+[ext_resource path="res://Map/building.png" type="Texture" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "snow-expansion.png 0"
@@ -187,11 +187,11 @@ resource_local_to_scene = true
 0/z_index = 0
 
 [sub_resource type="TileSet" id=9]
-0/name = "troop_tileset.png 0"
-0/texture = ExtResource( 3 )
+0/name = "building.png 0"
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 64, 64 )
+0/region = Rect2( 0, 0, 32, 32 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -203,11 +203,11 @@ resource_local_to_scene = true
 0/z_index = 0
 
 [sub_resource type="TileSet" id=10]
-0/name = "troop_tileset.png 0"
-0/texture = ExtResource( 3 )
+0/name = "building.png 0"
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 64, 64, 64 )
+0/region = Rect2( 0, 32, 32, 32 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -255,10 +255,7 @@ format = 1
 
 [node name="BlueCastle" type="TileMap" parent="."]
 tile_set = SubResource( 9 )
-cell_size = Vector2( 32, 32 )
-cell_quadrant_size = 32
-cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
-cell_tile_origin = 2
+cell_quadrant_size = 64
 compatibility_mode = true
 centered_textures = true
 collision_use_kinematic = true
