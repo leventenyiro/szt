@@ -9,6 +9,7 @@ var environment_tile_count = 6
 var tree_cap = 0.002
 var tree_chance = 1
 var road_caps = Vector2(0.1,0.11)
+var castle_distance = 40
 
 func _ready():
 	randomize()
@@ -83,23 +84,31 @@ func create_prop_map():
 				if chance < tree_chance and not tree_around:
 					$Trees.set_cell(x,y,0)
 					
+func distance(x1, y1, x2, y2):
+	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2))
+	
 func create_castles():
-	#ide a kód
-	# addig keresse a helyét, amíg nem vízre rakja és a másiktól ellentétes irányban legyen
-	#$Water.get_cell()
-	var is_blue_ready = false
-	while (!is_blue_ready):
-		var x = rand_range(0, map_size.x / 4)
-		var y = rand_range(0, map_size.y / 4)
-		if $Water.get_cell(x, y) == -1:
-			$BlueCastle.set_cell(x, y, 0)
-			is_blue_ready = true
-		# ha van ott fa
-		
-	var is_red_ready = false
-	while (!is_red_ready):
-		var x = rand_range(map_size.x / 4, map_size.x / 2)
-		var y = rand_range(map_size.y / 4, map_size.y / 2)
-		if $Water.get_cell(x, y) == -1:
-			$RedCastle.set_cell(x, y, 0)
-			is_red_ready = true
+	# nem lehet a map szélén, vízben, illetve a kettő legyen távol egymástól
+	var is_castles_ready = false
+	while (!is_castles_ready):
+		var is_blue_ready = false
+		var x1 = 0
+		var y1 = 0
+		while (!is_blue_ready):
+			x1 = round(rand_range(0, map_size.x / 4))
+			y1 = round(rand_range(0, map_size.y / 4))
+			if $Water.get_cell(x1, y1) == -1:
+
+				is_blue_ready = true
+			
+		var is_red_ready = false
+		while (!is_red_ready):
+			var x2 = round(rand_range(map_size.x / 4, map_size.x / 2))
+			var y2 = round(rand_range(map_size.y / 4, map_size.y / 2))
+			#if $Water.get_cell(x2, y2) == -1 and distance(x1, y1, x2, y2) >= 20:
+			#print(distance(x1, y1, x2, y2))
+			if distance(x1, y1, x2, y2) >= 20:
+
+				is_red_ready = true
+	#$BlueCastle.set_cell(x1, y1, 0)
+					$RedCastle.set_cell(x2, y2, 0)
