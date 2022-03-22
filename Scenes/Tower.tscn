@@ -7,7 +7,6 @@
 extents = Vector2( 21, 22 )
 
 [node name="Area2D" type="Area2D"]
-position = Vector2( 211, 372 )
 z_index = 1
 script = ExtResource( 1 )
 

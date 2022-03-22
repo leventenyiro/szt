@@ -1,22 +1,25 @@
 extends KinematicBody2D
-
+## Signal showing the units health updated
 signal healt_update(health)
-
+## Speed value of the Unit.Can be changed in inspector
 export (int) var speed = 150
+## Health value of the Unit.Can be changed in inspector
 export (int) var max_health = 3
-
+## Navigation for the unit
 var nav = null setget set_nav
+## Shortest path to the goal
 var path = []
+## The goal that the unit's move toward
 var goal = Vector2()
-
+## Health value of the unit.
 onready var health = max_health setget _set_health
-
-func damage(amount):
+## Unit loses "amount" health points
+func take_damage(amount):
 	_set_health(health - amount)
-
+## Destroys the unit object
 func kill():
 	queue_free()
-
+## Sets the unit's health to "value"
 func _set_health(value):
 	var prev_health = health;
 	health = clamp(value,0,max_health)
@@ -24,26 +27,18 @@ func _set_health(value):
 		emit_signal("healt_update",health)
 		if health == 0:
 			kill()
-			
+## Sets the nav and calculates the path
 func set_nav(new_nav):
 	nav = new_nav
-	update_path()
-
-func update_path():
 	path = nav.get_simple_path(get_position(), goal, false)
 	if path.size() == 0:
 		queue_free()
-
-func _physics_process(delta):
+	update_path()
+## Moves the unit to the next tile in its path
+func update_path():
 	if path.size() > 1:
-		var d = get_position().distance_to(path[0])
-		if d > 2:
-			set_position(get_position().linear_interpolate(path[0], (speed * delta)/d))
-		else:
-			path.remove(0)
+		set_position(path[0])
+		path.remove(0)
 	else:
 		queue_free()
 		
-
-
-

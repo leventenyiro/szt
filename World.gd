@@ -133,3 +133,4 @@ func create_castles():
 	var red_position = red_available_positions[rand_range(0, red_available_positions.size())]
 	$RedCastle.set_cell(red_position.x, red_position.y, 0)
 	print(distance(blue_position.x, blue_position.y, red_position.x, red_position.y))
+
