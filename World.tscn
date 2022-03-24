@@ -255,7 +255,8 @@ format = 1
 
 [node name="BlueCastle" type="TileMap" parent="."]
 tile_set = SubResource( 9 )
-cell_quadrant_size = 64
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 compatibility_mode = true
 centered_textures = true
 collision_use_kinematic = true
@@ -263,9 +264,8 @@ format = 1
 
 [node name="RedCastle" type="TileMap" parent="."]
 tile_set = SubResource( 10 )
-cell_size = Vector2( 32, 32 )
-cell_quadrant_size = 32
-cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 cell_tile_origin = 2
 compatibility_mode = true
 centered_textures = true

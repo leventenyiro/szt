@@ -88,31 +88,16 @@ func distance(x1, y1, x2, y2):
 	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2))
 	
 func create_castles():
-	# nem lehet a map szélén, vízben, illetve a kettő legyen távol egymástól
-	#var is_castles_ready = false
-	#var x_blue
-	#var y_blue
-	#var x_red
-	#var y_red
-	#while !is_castles_ready:
-	#	x_blue = rand_range(1, map_size.x / 4 - 1)
-	#	y_blue = rand_range(1, map_size.y / 4 - 1)
-	#	x_red = rand_range(1, map_size.x / 4 - 1)
-	#	y_red = rand_range(1, map_size.y / 4 - 1)
-	#	var is_blue_in_water = $Water.get_cell(x_blue, y_blue)
-	#	print(is_blue_in_water)
-	#	if distance(x_blue, y_blue, x_red, y_red) >= 10 and $Water.get_cell(x_blue, y_blue) == -1 and $Water.get_cell(x_red, y_red) == -1:
-	#		is_castles_ready = true
-	#print("Blue: " + x_blue + " " + y_blue)
-	#print("Red: " + x_red + " " + y_red)
-	#$BlueCastle.set_cell(x_blue, y_blue, 0)
-	#$RedCastle.set_cell(x_red, y_red, 0)
-	#$RedCastle.set_cell(5,21, 0)
-	
 	var available_positions = []
 	
-	for i in range(3,map_size.x-3, 1):
-		for j in range(3,map_size.y-3, 1):
-			available_positions.append(Vector2(i, j))
+	for i in range(3,map_size.x - 3, 1):
+		for j in range(3,map_size.y - 3, 1):
+			# víz van-e ott
+			if $Water.get_cell(i, j) == -1:
+				available_positions.append(Vector2(i, j))
+			# fa van-e a közelben - ez majd lejjebb lesz véve
 	var blue_position = available_positions[rand_range(0, available_positions.size())]
 	$BlueCastle.set_cell(blue_position.x, blue_position.y, 0)
+	# itt leszűrjük a listát - távolság alapján
+	var red_position = available_positions[rand_range(0, available_positions.size())]
+	$RedCastle.set_cell(red_position.x, red_position.y, 0)
