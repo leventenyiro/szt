@@ -9,6 +9,7 @@ var environment_tile_count = 6
 var tree_cap = 0.002
 var tree_chance = 1
 var road_caps = Vector2(0.1,0.11)
+var castle_distance = 30
 
 func _ready():
 	randomize()
@@ -111,23 +112,28 @@ func create_prop_map():
 ## desc:
 ## 		Generates all the tiles for the castle tilesets based on the randomized noise pattern.
 		
+func distance(x1, y1, x2, y2):
+	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2))
+
+func tree_in_range(n, m, r):
+	for i in range(n - r, n + r, 1):
+		for j in range(m - r, m + r, 1):
+			if $Trees.get_cell(i, j) != -1:
+				return true
+	return false
+	
 func create_castles():
-	#ide a kód
-	# addig keresse a helyét, amíg nem vízre rakja és a másiktól ellentétes irányban legyen
-	#$Water.get_cell()
-	var is_blue_ready = false
-	while (!is_blue_ready):
-		var x = rand_range(0, map_size.x / 4)
-		var y = rand_range(0, map_size.y / 4)
-		if $Water.get_cell(x, y) == -1:
-			$BlueCastle.set_cell(x, y, 0)
-			is_blue_ready = true
-		# ha van ott fa
-		
-	var is_red_ready = false
-	while (!is_red_ready):
-		var x = rand_range(map_size.x / 4, map_size.x / 2)
-		var y = rand_range(map_size.y / 4, map_size.y / 2)
-		if $Water.get_cell(x, y) == -1:
-			$RedCastle.set_cell(x, y, 0)
-			is_red_ready = true
+	var available_positions = []
+	for i in range(3,map_size.x - 3):
+		for j in range(3,map_size.y - 3):
+			if $Water.get_cell(i, j) == -1 and !tree_in_range(i, j, 2):
+				available_positions.append(Vector2(i, j))
+	var blue_position = available_positions[rand_range(0, available_positions.size())]
+	$BlueCastle.set_cell(blue_position.x, blue_position.y, 0)
+	var red_available_positions = []
+	for item in available_positions:
+		if distance(blue_position.x, blue_position.y, item.x, item.y) > castle_distance:
+			red_available_positions.append(item)
+	var red_position = red_available_positions[rand_range(0, red_available_positions.size())]
+	$RedCastle.set_cell(red_position.x, red_position.y, 0)
+	print(distance(blue_position.x, blue_position.y, red_position.x, red_position.y))
