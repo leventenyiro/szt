@@ -19,7 +19,11 @@ func _ready():
 	noise.period = 16
 	noise.persistence = 0.7
 	generate()
-	
+
+## Generates the world props.
+## @desc:
+## 		Generates all the tilesets which the world is built from.
+
 func generate():
 	create_grass_map()
 	create_environment_map()
@@ -28,6 +32,10 @@ func generate():
 	create_prop_map()
 	create_castles()
 
+## Generates the grass tiles.
+## desc:
+## 		Generates all the tiles for the grass tileset based on the randomized noise pattern.
+
 func create_grass_map():
 	for x in map_size.x:
 		for y in map_size.y:
@@ -35,7 +43,11 @@ func create_grass_map():
 			if current_noise < grass_cap:
 				$Grass.set_cell(x,y,0)
 	$Grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
-			
+
+## Generates the environment tiles.
+## desc:
+## 		Generates all the tiles for the environmnet tileset based on the randomized noise pattern.
+
 func create_environment_map():
 	for x in map_size.x:
 		for y in map_size.y:
@@ -47,12 +59,20 @@ func create_environment_map():
 						var num = randi() % environment_tile_count
 						$Environment.set_cell(x,y,num)
 
+## Generates the water tiles.
+## desc:
+## 		Generates all the tiles for the water tileset based on the randomized noise pattern.
+
 func create_water_map():
 	for x in map_size.x:
 		for y in map_size.y:
 			if $Grass.get_cell(x,y) == -1:
 				$Water.set_cell(x,y,0)
 	$Grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
+
+## Generates the road tiles.
+## desc:
+## 		Generates all the tiles for the road tileset based on the randomized noise pattern.
 
 func create_road_map():
 	for x in range(1,map_size.x-1):
@@ -69,6 +89,10 @@ func create_road_map():
 					$Roads.set_cell(x,y,0)
 	$Roads.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
 
+## Generates the road tiles.
+## desc:
+## 		Generates all the tiles for the road tileset based on the randomized noise pattern.
+
 func create_prop_map():
 	for x in range(3,map_size.x-3):
 		for y in range(3,map_size.y-3):
@@ -83,7 +107,11 @@ func create_prop_map():
 							break
 				if chance < tree_chance and not tree_around:
 					$Trees.set_cell(x,y,0)
-					
+
+## Generates the castle tiles.
+## desc:
+## 		Generates all the tiles for the castle tilesets based on the randomized noise pattern.
+		
 func distance(x1, y1, x2, y2):
 	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2))
 
