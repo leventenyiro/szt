@@ -1,8 +1,234 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Map/snow-expansion.png" type="Texture" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
+[ext_resource path="res://test.gd" type="Script" id=3]
 [ext_resource path="res://Map/building.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/UnitsSpawn.gd" type="Script" id=5]
+
+[sub_resource type="NavigationPolygon" id=122]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=66]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=67]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=68]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=69]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=70]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=71]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=72]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=73]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=74]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=75]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=76]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=77]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=78]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=79]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=80]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=81]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=82]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=83]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=84]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=85]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=86]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=87]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=88]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=89]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=90]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=91]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=92]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=93]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=94]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=95]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=96]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=97]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=98]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=99]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=100]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=101]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=102]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=103]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=104]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=105]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=106]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=107]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=108]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=109]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=110]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=111]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=112]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=113]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=114]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=115]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=116]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=117]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=118]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=119]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=120]
+vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="TileSet" id=1]
 0/name = "snow-expansion.png 0"
@@ -13,6 +239,31 @@
 0/tile_mode = 1
 0/autotile/bitmask_mode = 1
 0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 511, Vector2( 0, 1 ), 446, Vector2( 0, 2 ), 219, Vector2( 0, 3 ), 59, Vector2( 0, 4 ), 146, Vector2( 0, 5 ), 176, Vector2( 0, 6 ), 63, Vector2( 1, 0 ), 255, Vector2( 1, 1 ), 443, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 58, Vector2( 1, 4 ), 56, Vector2( 1, 5 ), 152, Vector2( 1, 6 ), 63, Vector2( 2, 0 ), 447, Vector2( 2, 1 ), 506, Vector2( 2, 2 ), 438, Vector2( 2, 3 ), 182, Vector2( 2, 4 ), 27, Vector2( 2, 5 ), 24, Vector2( 2, 6 ), 63, Vector2( 3, 0 ), 507, Vector2( 3, 1 ), 187, Vector2( 3, 2 ), 504, Vector2( 3, 3 ), 434, Vector2( 3, 4 ), 54, Vector2( 3, 5 ), 18, Vector2( 3, 6 ), 63, Vector2( 4, 0 ), 510, Vector2( 4, 1 ), 190, Vector2( 4, 2 ), 155, Vector2( 4, 3 ), 178, Vector2( 4, 4 ), 432, Vector2( 4, 5 ), 48, Vector2( 4, 6 ), 63, Vector2( 5, 0 ), 191, Vector2( 5, 1 ), 442, Vector2( 5, 2 ), 218, Vector2( 5, 3 ), 440, Vector2( 5, 4 ), 216, Vector2( 5, 5 ), 144, Vector2( 6, 0 ), 254, Vector2( 6, 1 ), 250, Vector2( 6, 2 ), 154, Vector2( 6, 3 ), 248, Vector2( 6, 4 ), 26, Vector2( 6, 5 ), 16, Vector2( 7, 0 ), 251, Vector2( 7, 1 ), 186, Vector2( 7, 2 ), 62, Vector2( 7, 3 ), 184, Vector2( 7, 4 ), 50, Vector2( 7, 5 ), 448 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 122 ), Vector2( 0, 1 ), SubResource( 66 ), Vector2( 0, 2 ), SubResource( 67 ), Vector2( 0, 3 ), SubResource( 68 ), Vector2( 0, 4 ), SubResource( 69 ), Vector2( 0, 5 ), SubResource( 70 ), Vector2( 0, 6 ), SubResource( 71 ), Vector2( 1, 0 ), SubResource( 72 ), Vector2( 1, 1 ), SubResource( 73 ), Vector2( 1, 2 ), SubResource( 74 ), Vector2( 1, 3 ), SubResource( 75 ), Vector2( 1, 4 ), SubResource( 76 ), Vector2( 1, 5 ), SubResource( 77 ), Vector2( 1, 6 ), SubResource( 78 ), Vector2( 2, 0 ), SubResource( 79 ), Vector2( 2, 1 ), SubResource( 80 ), Vector2( 2, 2 ), SubResource( 81 ), Vector2( 2, 3 ), SubResource( 82 ), Vector2( 2, 4 ), SubResource( 83 ), Vector2( 2, 5 ), SubResource( 84 ), Vector2( 2, 6 ), SubResource( 85 ), Vector2( 3, 0 ), SubResource( 86 ), Vector2( 3, 1 ), SubResource( 87 ), Vector2( 3, 2 ), SubResource( 88 ), Vector2( 3, 3 ), SubResource( 89 ), Vector2( 3, 4 ), SubResource( 90 ), Vector2( 3, 5 ), SubResource( 91 ), Vector2( 3, 6 ), SubResource( 92 ), Vector2( 4, 0 ), SubResource( 93 ), Vector2( 4, 1 ), SubResource( 94 ), Vector2( 4, 2 ), SubResource( 95 ), Vector2( 4, 3 ), SubResource( 96 ), Vector2( 4, 4 ), SubResource( 97 ), Vector2( 4, 5 ), SubResource( 98 ), Vector2( 4, 6 ), SubResource( 99 ), Vector2( 5, 0 ), SubResource( 100 ), Vector2( 5, 1 ), SubResource( 101 ), Vector2( 5, 2 ), SubResource( 102 ), Vector2( 5, 3 ), SubResource( 103 ), Vector2( 5, 4 ), SubResource( 104 ), Vector2( 5, 5 ), SubResource( 105 ), Vector2( 5, 6 ), SubResource( 106 ), Vector2( 6, 0 ), SubResource( 107 ), Vector2( 6, 1 ), SubResource( 108 ), Vector2( 6, 2 ), SubResource( 109 ), Vector2( 6, 3 ), SubResource( 110 ), Vector2( 6, 4 ), SubResource( 111 ), Vector2( 6, 5 ), SubResource( 112 ), Vector2( 6, 6 ), SubResource( 113 ), Vector2( 7, 0 ), SubResource( 114 ), Vector2( 7, 1 ), SubResource( 115 ), Vector2( 7, 2 ), SubResource( 116 ), Vector2( 7, 3 ), SubResource( 117 ), Vector2( 7, 4 ), SubResource( 118 ), Vector2( 7, 5 ), SubResource( 119 ), Vector2( 7, 6 ), SubResource( 120 ) ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=6]
+0/name = "snow-expansion.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 128, 128, 128, 96 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 1
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 511, Vector2( 0, 1 ), 446, Vector2( 0, 2 ), 219, Vector2( 0, 3 ), 59, Vector2( 0, 4 ), 146, Vector2( 0, 5 ), 176, Vector2( 1, 0 ), 255, Vector2( 1, 1 ), 443, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 58, Vector2( 1, 4 ), 56, Vector2( 1, 5 ), 152, Vector2( 2, 0 ), 447, Vector2( 2, 1 ), 506, Vector2( 2, 2 ), 438, Vector2( 2, 3 ), 182, Vector2( 2, 4 ), 27, Vector2( 2, 5 ), 24, Vector2( 3, 0 ), 507, Vector2( 3, 1 ), 187, Vector2( 3, 2 ), 504, Vector2( 3, 3 ), 434, Vector2( 3, 4 ), 54, Vector2( 3, 5 ), 18, Vector2( 4, 0 ), 510, Vector2( 4, 1 ), 190, Vector2( 4, 2 ), 155, Vector2( 4, 3 ), 178, Vector2( 4, 4 ), 432, Vector2( 4, 5 ), 48, Vector2( 5, 0 ), 191, Vector2( 5, 1 ), 442, Vector2( 5, 2 ), 218, Vector2( 5, 3 ), 440, Vector2( 5, 4 ), 216, Vector2( 5, 5 ), 144, Vector2( 6, 0 ), 254, Vector2( 6, 1 ), 250, Vector2( 6, 2 ), 154, Vector2( 6, 3 ), 248, Vector2( 6, 4 ), 26, Vector2( 6, 5 ), 16, Vector2( 7, 0 ), 251, Vector2( 7, 1 ), 186, Vector2( 7, 2 ), 62, Vector2( 7, 3 ), 184, Vector2( 7, 4 ), 50, Vector2( 7, 5 ), 448 ]
 0/autotile/icon_coordinate = Vector2( 0, 0 )
 0/autotile/tile_size = Vector2( 16, 16 )
 0/autotile/spacing = 0
@@ -144,31 +395,6 @@ load_path = "res://.import/snow-expansion.png-803d8658d68e6e113f484137eea12d16.s
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=6]
-0/name = "snow-expansion.png 0"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 128, 128, 128, 96 )
-0/tile_mode = 1
-0/autotile/bitmask_mode = 1
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 511, Vector2( 0, 1 ), 446, Vector2( 0, 2 ), 219, Vector2( 0, 3 ), 59, Vector2( 0, 4 ), 146, Vector2( 0, 5 ), 176, Vector2( 1, 0 ), 255, Vector2( 1, 1 ), 443, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 58, Vector2( 1, 4 ), 56, Vector2( 1, 5 ), 152, Vector2( 2, 0 ), 447, Vector2( 2, 1 ), 506, Vector2( 2, 2 ), 438, Vector2( 2, 3 ), 182, Vector2( 2, 4 ), 27, Vector2( 2, 5 ), 24, Vector2( 3, 0 ), 507, Vector2( 3, 1 ), 187, Vector2( 3, 2 ), 504, Vector2( 3, 3 ), 434, Vector2( 3, 4 ), 54, Vector2( 3, 5 ), 18, Vector2( 4, 0 ), 510, Vector2( 4, 1 ), 190, Vector2( 4, 2 ), 155, Vector2( 4, 3 ), 178, Vector2( 4, 4 ), 432, Vector2( 4, 5 ), 48, Vector2( 5, 0 ), 191, Vector2( 5, 1 ), 442, Vector2( 5, 2 ), 218, Vector2( 5, 3 ), 440, Vector2( 5, 4 ), 216, Vector2( 5, 5 ), 144, Vector2( 6, 0 ), 254, Vector2( 6, 1 ), 250, Vector2( 6, 2 ), 154, Vector2( 6, 3 ), 248, Vector2( 6, 4 ), 26, Vector2( 6, 5 ), 16, Vector2( 7, 0 ), 251, Vector2( 7, 1 ), 186, Vector2( 7, 2 ), 62, Vector2( 7, 3 ), 184, Vector2( 7, 4 ), 50, Vector2( 7, 5 ), 448 ]
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 16, 16 )
-0/autotile/spacing = 0
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-
 [sub_resource type="TileSet" id=5]
 resource_local_to_scene = true
 0/name = "snow-expansion.png 0"
@@ -218,11 +444,22 @@ resource_local_to_scene = true
 0/shapes = [  ]
 0/z_index = 0
 
+[sub_resource type="TileSet" id=121]
+
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Grass" type="TileMap" parent="."]
+[node name="Nav" type="Navigation2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Grass" type="TileMap" parent="Nav"]
 tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 1
+format = 1
+
+[node name="Roads" type="TileMap" parent="."]
+tile_set = SubResource( 6 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
@@ -238,11 +475,6 @@ cell_size = Vector2( 16, 16 )
 collision_use_kinematic = true
 format = 1
 
-[node name="Roads" type="TileMap" parent="."]
-tile_set = SubResource( 6 )
-cell_size = Vector2( 16, 16 )
-format = 1
-
 [node name="Trees" type="TileMap" parent="."]
 tile_set = SubResource( 5 )
 cell_size = Vector2( 16, 16 )
@@ -252,6 +484,7 @@ compatibility_mode = true
 centered_textures = true
 collision_use_kinematic = true
 format = 1
+script = ExtResource( 3 )
 
 [node name="BlueCastle" type="TileMap" parent="."]
 tile_set = SubResource( 9 )
@@ -271,3 +504,32 @@ compatibility_mode = true
 centered_textures = true
 collision_use_kinematic = true
 format = 1
+
+[node name="Towers" type="TileMap" parent="."]
+z_index = 1
+tile_set = SubResource( 121 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="start_pos" type="Position2D" parent="."]
+
+[node name="end_pos" type="Position2D" parent="."]
+position = Vector2( 1280, 720 )
+
+[node name="Button" type="Button" parent="."]
+anchor_bottom = 1.0
+margin_left = 14.0
+margin_top = 649.0
+margin_right = 125.0
+margin_bottom = 708.0
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 170.0
+margin_top = 628.0
+margin_right = 683.0
+margin_bottom = 716.0
+
+[connection signal="map_changed" from="Trees" to="Nav" method="_on_Trees_map_changed"]
+[connection signal="pressed" from="Button" to="Nav" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button3" to="Nav" method="_on_Button3_pressed"]
+[connection signal="pressed" from="Button3" to="Towers" method="_on_Button3_pressed"]
