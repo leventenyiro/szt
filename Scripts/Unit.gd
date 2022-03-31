@@ -10,7 +10,8 @@ var nav = null setget set_nav
 ## Shortest path to the goal
 var path = []
 var path2 = []
-var path3 = []
+var pre
+onready var line_2D : Line2D = $Line2D
 ## The goal that the unit's move toward
 var goal = Vector2()
 ## Health value of the unit.
@@ -35,20 +36,40 @@ func set_nav(new_nav):
 	path = nav.get_simple_path(get_position(), goal, false)
 	if path.size() == 0:
 		queue_free()
+	path=align(path)
+	
 ## Moves the unit to the next tile in its path
 func update_path():
-	path = nav.get_simple_path(path[0], goal, false)
+	path = nav.get_simple_path(get_position(), goal, false)
+	print(get_position())
 	if path.size() == 0:
 		queue_free()
-	
+	path=align(path)
+	path.remove(0)
 func move():
+	path=align(path)
 	if path.size() > 1:
-		if fmod(path[0].x, 16) == 0:
-			path[0].x += 8
-		if fmod(path[0].y, 16) == 0:
-			path[0].y += 8
 		set_position(path[0])
 		path.remove(0)
 	else:
 		queue_free()
-		
+	
+	
+func align(paths):
+	var new_paths = []
+	var pre
+	for item in paths:
+		if fmod(item.x, 16) != 0:
+			item.x -= 8
+		if fmod(item.y, 16) != 0:
+			item.y -= 8
+		new_paths.append(Vector2(item))
+	pre=new_paths[0]
+	if(new_paths.size()>2):
+		if(pre==new_paths[1]):
+			if(new_paths[1].x-16==new_paths[2].x):
+				new_paths[1].x-=16
+			if(new_paths[1].y-16==new_paths[2].y):
+				new_paths[1].y-=16
+	return new_paths
+	

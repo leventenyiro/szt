@@ -2,6 +2,7 @@ extends Navigation2D
 ## Signal showing the map has updated
 signal new_turn
 signal map_changed
+signal printa
 ## Preloading the unit
 var unit = preload("res://Scenes/Unit.tscn")
 ## Getting the start position of the map
@@ -22,9 +23,14 @@ func _on_Button_pressed():
 	u.nav = nav
 	connect("new_turn", u, "move")
 	connect("map_changed", u, "update_path")
+	connect("printa", u, "asdd")
 
 func _on_Button3_pressed():
 	emit_signal("new_turn")
 
 func _on_Trees_map_changed():
 	emit_signal("map_changed")
+
+
+func _on_Button2_pressed():
+	emit_signal("printa")

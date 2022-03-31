@@ -14,6 +14,8 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		var mouse_pos = get_viewport().get_mouse_position()
 		var tile_pos = map_to_world(world_to_map(mouse_pos))
+		#print(mouse_pos)
+		#print(tile_pos)
 		tile_pos = tile_pos / 16
 		set_cell(tile_pos.x,tile_pos.y,-1)
 		env.set_cell(tile_pos.x,tile_pos.y,-1)
