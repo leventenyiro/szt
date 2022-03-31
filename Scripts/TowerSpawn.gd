@@ -21,6 +21,6 @@ func _unhandled_input(event):
 			self.add_child(Tower_Insatnce)
 			set_cell(tile_pos.x, tile_pos.y,0)
 			connect("new_turn", Tower_Insatnce, "_shoot")
-## Emits a new turn signal 
-func _on_Button_pressed():
+			
+func _on_Button3_pressed():
 	emit_signal("new_turn")

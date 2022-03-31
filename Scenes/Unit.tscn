@@ -9,6 +9,7 @@ extents = Vector2( 28, 28 )
 [node name="KinematicBody2D" type="KinematicBody2D"]
 z_index = 1
 script = ExtResource( 1 )
+max_health = 15
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )

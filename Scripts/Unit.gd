@@ -9,6 +9,8 @@ export (int) var max_health = 3
 var nav = null setget set_nav
 ## Shortest path to the goal
 var path = []
+var path2 = []
+var path3 = []
 ## The goal that the unit's move toward
 var goal = Vector2()
 ## Health value of the unit.
@@ -33,14 +35,18 @@ func set_nav(new_nav):
 	path = nav.get_simple_path(get_position(), goal, false)
 	if path.size() == 0:
 		queue_free()
-	update_path()
 ## Moves the unit to the next tile in its path
 func update_path():
+	path = nav.get_simple_path(path[0], goal, false)
+	if path.size() == 0:
+		queue_free()
+	
+func move():
 	if path.size() > 1:
 		if fmod(path[0].x, 16) == 0:
-			path[0].x -= 8
+			path[0].x += 8
 		if fmod(path[0].y, 16) == 0:
-			path[0].y -= 8
+			path[0].y += 8
 		set_position(path[0])
 		path.remove(0)
 	else:
