@@ -64,8 +64,8 @@ func align(paths):
 		if fmod(item.y, 16) != 0:
 			item.y -= 8
 		new_paths.append(Vector2(item))
-	pre=new_paths[0]
 	if(new_paths.size()>2):
+		pre=new_paths[0]
 		if(pre==new_paths[1]):
 			if(new_paths[1].x-16==new_paths[2].x):
 				new_paths[1].x-=16
