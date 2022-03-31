@@ -41,13 +41,9 @@ func create_grass_map():
 		for y in map_size.y:
 			var current_noise = noise.get_noise_2d(x,y)
 			if current_noise < grass_cap:
-				$Grass.set_cell(x,y,0)
-	$Grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
-
-## Generates the environment tiles.
-## desc:
-## 		Generates all the tiles for the environmnet tileset based on the randomized noise pattern.
-
+				$Nav/Grass.set_cell(x,y,0)
+	$Nav/Grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
+			
 func create_environment_map():
 	for x in map_size.x:
 		for y in map_size.y:
@@ -66,9 +62,9 @@ func create_environment_map():
 func create_water_map():
 	for x in map_size.x:
 		for y in map_size.y:
-			if $Grass.get_cell(x,y) == -1:
+			if $Nav/Grass.get_cell(x,y) == -1:
 				$Water.set_cell(x,y,0)
-	$Grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
+	$Nav/Grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
 
 ## Generates the road tiles.
 ## desc:
@@ -78,7 +74,7 @@ func create_road_map():
 	for x in range(1,map_size.x-1):
 		for y in range(1,map_size.y-1):
 			var current_noise = noise.get_noise_2d(x,y)
-			if current_noise > road_caps.x and current_noise > road_caps.y and $Grass.get_cell(x,y) == 0:
+			if current_noise > road_caps.x and current_noise > road_caps.y and $Nav/Grass.get_cell(x,y) == 0:
 				var water_around = false
 				for i in range(x-1,x+2):
 					for j in range(y-1,y+2):
@@ -97,7 +93,7 @@ func create_prop_map():
 	for x in range(3,map_size.x-3):
 		for y in range(3,map_size.y-3):
 			var current_noise = noise.get_noise_2d(x,y)
-			if current_noise < tree_cap and $Grass.get_cell(x,y) == 0:
+			if current_noise < tree_cap and $Nav/Grass.get_cell(x,y) == 0:
 				var chance = randi() % 100
 				var tree_around = false
 				for i in range(x-1,x+2):
