@@ -15,6 +15,7 @@ func _ready():
 ## Creates a unit every button click
 func _on_Button_pressed():
 	var u = unit.instance()
+	print(start_pos)
 	add_child(u)
 	u.set_position(start_pos)
 	u.goal = end_pos

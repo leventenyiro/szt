@@ -37,6 +37,10 @@ func set_nav(new_nav):
 ## Moves the unit to the next tile in its path
 func update_path():
 	if path.size() > 1:
+		if fmod(path[0].x, 16) == 0:
+			path[0].x -= 8
+		if fmod(path[0].y, 16) == 0:
+			path[0].y -= 8
 		set_position(path[0])
 		path.remove(0)
 	else:
