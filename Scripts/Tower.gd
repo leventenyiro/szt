@@ -11,6 +11,7 @@ export (float) var e_damage = 1;
 
 ## Damage value of the tower
 onready var damage = e_damage
+var _pos
 
 ## The tower shoots the furthest unit in its range 
 func _shoot():
@@ -18,5 +19,8 @@ func _shoot():
 	if units.size()>0:
 		units[0].take_damage(damage)
 		print("I SHOT " + units[0].get_name())
+func _destroy():
+	#--Give player money here when its implemented
+	queue_free()
 
 

@@ -24,4 +24,4 @@ func _unhandled_input(event):
 		tree.set_cell(tile_pos.x,tile_pos.y,-1)
 		tow.set_cell(tile_pos.x,tile_pos.y,-1)
 		grass.set_cell(tile_pos.x,tile_pos.y,-1)
-		emit_signal("map_changed")
+	

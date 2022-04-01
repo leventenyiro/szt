@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Map/snow-expansion.png" type="Texture" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
-[ext_resource path="res://test.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/TowerSpawn.gd" type="Script" id=3]
 [ext_resource path="res://Map/building.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/UnitsSpawn.gd" type="Script" id=5]
 
@@ -484,7 +484,6 @@ compatibility_mode = true
 centered_textures = true
 collision_use_kinematic = true
 format = 1
-script = ExtResource( 3 )
 
 [node name="BlueCastle" type="TileMap" parent="."]
 tile_set = SubResource( 9 )
@@ -510,6 +509,7 @@ z_index = 1
 tile_set = SubResource( 121 )
 cell_size = Vector2( 16, 16 )
 format = 1
+script = ExtResource( 3 )
 
 [node name="start_pos" type="Position2D" parent="."]
 
@@ -529,7 +529,7 @@ margin_top = 628.0
 margin_right = 683.0
 margin_bottom = 716.0
 
-[connection signal="map_changed" from="Trees" to="Nav" method="_on_Trees_map_changed"]
+[connection signal="map_changed" from="Towers" to="Nav" method="_on_Towers_map_changed"]
 [connection signal="pressed" from="Button" to="Nav" method="_on_Button_pressed"]
 [connection signal="pressed" from="Button3" to="Nav" method="_on_Button3_pressed"]
 [connection signal="pressed" from="Button3" to="Towers" method="_on_Button3_pressed"]

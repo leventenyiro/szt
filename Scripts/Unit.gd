@@ -41,7 +41,6 @@ func set_nav(new_nav):
 ## Moves the unit to the next tile in its path
 func update_path():
 	path = nav.get_simple_path(get_position(), goal, false)
-	print(get_position())
 	if path.size() == 0:
 		queue_free()
 	path=align(path)
