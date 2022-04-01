@@ -9,9 +9,6 @@ export (int) var max_health = 3
 var nav = null setget set_nav
 ## Shortest path to the goal
 var path = []
-var path2 = []
-var pre
-onready var line_2D : Line2D = $Line2D
 ## The goal that the unit's move toward
 var goal = Vector2()
 ## Health value of the unit.
@@ -41,7 +38,6 @@ func set_nav(new_nav):
 ## Moves the unit to the next tile in its path
 func update_path():
 	path = nav.get_simple_path(get_position(), goal, false)
-	print(get_position())
 	if path.size() == 0:
 		queue_free()
 	path=align(path)
