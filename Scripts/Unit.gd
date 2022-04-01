@@ -9,9 +9,6 @@ export (int) var max_health = 3
 var nav = null setget set_nav
 ## Shortest path to the goal
 var path = []
-var path2 = []
-var pre
-onready var line_2D : Line2D = $Line2D
 ## The goal that the unit's move toward
 var goal = Vector2()
 ## Health value of the unit.

@@ -25,14 +25,21 @@ func _unhandled_input(event):
 				set_cell(tile_pos.x, tile_pos.y,0)
 				grass.set_cell(tile_pos.x/16, tile_pos.y/16,-1)
 				connect("new_turn", Tower_Instance, "_shoot")
-				emit_signal("map_changed")
-		if event.button_index == BUTTON_RIGHT:
-			for item in self.get_children():
-				if item.get_position() == tile_pos:
-					set_cell(tile_pos.x, tile_pos.y,-1)
-					grass.set_cell(tile_pos.x/16, tile_pos.y/16,0)
-					item._destroy()
-			emit_signal("map_changed")
+				_map_changed()
+		
 			
 func _on_Button3_pressed():
+	_new_turn()
+	
+func _remove(tile_pos,item):
+	item._destroy()
+	set_cell(tile_pos.x, tile_pos.y,-1)
+	grass.set_cell(tile_pos.x/16, tile_pos.y/16,0)
+	grass.update_bitmask_region(Vector2(0.0, 0.0),  Vector2(80,45))
+	_map_changed()
+	
+func _new_turn():
 	emit_signal("new_turn")
+	
+func _map_changed():
+	emit_signal("map_changed")

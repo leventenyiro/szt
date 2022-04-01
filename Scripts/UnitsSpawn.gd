@@ -2,7 +2,6 @@ extends Navigation2D
 ## Signal showing the map has updated
 signal new_turn
 signal map_changed
-signal printa
 ## Preloading the unit
 var unit = preload("res://Scenes/Unit.tscn")
 ## Getting the start position of the map
