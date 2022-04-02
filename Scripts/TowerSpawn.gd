@@ -10,8 +10,7 @@ extends TileMap
 signal map_changed
 onready var Tower =  preload("res://Scenes/Tower.tscn")
 onready var grass = get_node("/root/World/Nav/Grass")
-## Signal showing a new turn has started
-signal new_turn
+onready var turn_queue = get_node('/root/World/GameLogic/TurnQueue')
 ## On click creates a tower on the tile that was clicked 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
@@ -20,16 +19,18 @@ func _unhandled_input(event):
 		if event.button_index == BUTTON_LEFT:
 			if get_cell(tile_pos.x, tile_pos.y) == -1 and grass.get_cell(tile_pos.x/16, tile_pos.y/16) == 0:
 				var Tower_Instance = Tower.instance()
+				var current_player = get_parent().get_node('GameLogic').get_child(0).get_current_player()
+				if Tower_Instance.cost > current_player.gold:
+					return
+				Tower_Instance.get_child(0).texture = load(turn_queue.get_current_tower_asset_path())
+				current_player.append_tower(Tower_Instance)
+				Tower_Instance.set_player(current_player)
 				Tower_Instance.set_position(Vector2(tile_pos.x,tile_pos.y))
+				current_player.decrease_gold(Tower_Instance.cost)
 				self.add_child(Tower_Instance)
 				set_cell(tile_pos.x, tile_pos.y,0)
 				grass.set_cell(tile_pos.x/16, tile_pos.y/16,-1)
-				connect("new_turn", Tower_Instance, "_shoot")
 				_map_changed()
-		
-			
-func _on_Button3_pressed():
-	_new_turn()
 	
 func _remove(tile_pos,item):
 	item._destroy()

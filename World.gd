@@ -1,5 +1,7 @@
 extends Node
 
+signal generation_complete
+
 var noise
 var map_size = Vector2(80,45)
 var grass_cap = 0.45
@@ -11,6 +13,8 @@ var tree_chance = 1
 var road_caps = Vector2(0.1,0.11)
 var castle_distance = 30
 
+onready var Castle =  preload("res://Scenes/Castle.tscn")
+
 func _ready():
 	randomize()
 	noise = OpenSimplexNoise.new()
@@ -19,6 +23,7 @@ func _ready():
 	noise.period = 16
 	noise.persistence = 0.7
 	generate()
+	emit_signal('generation_complete')
 
 ## Generates the world props.
 ## @desc:
@@ -126,11 +131,18 @@ func create_castles():
 				available_positions.append(Vector2(i, j))
 	var blue_position = available_positions[rand_range(0, available_positions.size())]
 	$BlueCastle.set_cell(blue_position.x, blue_position.y, 0)
+	var blue_castle = Castle.instance()
+	blue_castle.set_position(Vector2(blue_position.x * 16,blue_position.y * 16))
+	blue_castle.get_child(0).texture = load('res://Map/blue_castle.png')
+	$BlueCastle.add_child(blue_castle)
 	var red_available_positions = []
 	for item in available_positions:
 		if distance(blue_position.x, blue_position.y, item.x, item.y) > castle_distance:
 			red_available_positions.append(item)
 	var red_position = red_available_positions[rand_range(0, red_available_positions.size())]
 	$RedCastle.set_cell(red_position.x, red_position.y, 0)
-	print(distance(blue_position.x, blue_position.y, red_position.x, red_position.y))
+	var red_castle = Castle.instance()
+	red_castle.set_position(Vector2(red_position.x * 16,red_position.y * 16))
+	red_castle.get_child(0).texture = load('res://Map/red_castle.png')
+	$RedCastle.add_child(red_castle)
 
