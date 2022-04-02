@@ -12,13 +12,24 @@ var path = []
 ## The goal that the unit's move toward
 var goal = Vector2()
 ## Health value of the unit.
-onready var health = max_health setget _set_health
+onready var health = max_health setget _set_health, get_health
+var player = null
+onready var damage_to_castle = 1
+var cost = 100
+var drop_amount = 100
 ## Unit loses "amount" health points
 func take_damage(amount):
 	_set_health(health - amount)
 ## Destroys the unit object
 func kill():
+	self.player.get_enemy().add_gold(self.drop_amount)
+	var enemy_castle = weakref(self.player.get_enemy().get_castle())
+	if enemy_castle.get_ref() and self.get_position() == enemy_castle.get_ref().get_position():
+		enemy_castle.get_ref().take_damage(self.damage_to_castle)
+	self.player.erase_unit(self)
+	self.player.update_unit_count_label()
 	queue_free()
+
 ## Sets the unit's health to "value"
 func _set_health(value):
 	var prev_health = health;
@@ -27,19 +38,25 @@ func _set_health(value):
 		emit_signal("healt_update",health)
 		if health == 0:
 			kill()
+func get_health():
+	return health
+func set_player(player):
+	self.player = player
+func get_player():
+	return self.player
 ## Sets the nav and calculates the path
 func set_nav(new_nav):
 	nav = new_nav
 	path = nav.get_simple_path(get_position(), goal, false)
 	if path.size() == 0:
-		queue_free()
+		kill()
 	path=align(path)
 	
 ## Moves the unit to the next tile in its path
 func update_path():
 	path = nav.get_simple_path(get_position(), goal, false)
 	if path.size() == 0:
-		queue_free()
+		kill()
 	path=align(path)
 	path.remove(0)
 func move():
@@ -48,7 +65,7 @@ func move():
 		set_position(path[0])
 		path.remove(0)
 	else:
-		queue_free()
+		kill()
 	
 	
 func align(paths):

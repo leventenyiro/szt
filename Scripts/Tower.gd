@@ -12,14 +12,20 @@ onready var menu = get_node("/root/World/PopupMenu")
 onready var area=get_node("/root/World/Towers")
 ## Damage value of the tower
 onready var damage = e_damage
-var _pos
+onready var player
+var cost = 300
+var refund = cost/2
 
 ## The tower shoots the furthest unit in its range 
-func _shoot():
+func shoot():
 	var units = get_overlapping_bodies();
-	if units.size()>0:
-		units[0].take_damage(damage)
-		print("I SHOT " + units[0].get_name())
+	var enemy_units = []
+	for unit in units:
+		if self.player.units.find(unit) == -1:
+			enemy_units.append(unit)
+	if enemy_units.size()>0:
+		enemy_units[0].take_damage(damage)
+		print("I SHOT " + enemy_units[0].get_name())
 func _destroy():
 	#--Give player money here when its implemented
 	queue_free()
@@ -30,4 +36,5 @@ func _unhandled_input(event):
 		if tile_pos == get_position():
 			menu._popup(self,tile_pos)
 
-
+func set_player(player):
+	self.player = player
