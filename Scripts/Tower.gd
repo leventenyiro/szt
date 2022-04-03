@@ -27,6 +27,7 @@ func shoot():
 		enemy_units[0].take_damage(damage)
 		print("I SHOT " + enemy_units[0].get_name())
 func _destroy():
+	refund=cost/2
 	player.add_gold(refund)
 	queue_free()
 func _upgrade():
@@ -34,7 +35,9 @@ func _upgrade():
 		return
 	player.decrease_gold(upgrade_cost)
 	damage+=1
+	cost+=upgrade_cost
 	upgrade_cost+=100
+	print(cost)
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		get_children()[2].visible=false
