@@ -13,12 +13,12 @@ func _ready():
 func _popup(tower,position):
 	_position = position
 	_tower=tower
-	popup(Rect2(_position.x,_position.y,rect_size.x,rect_size.y))
+	popup(Rect2(_position.x+10,_position.y+10,rect_size.x,rect_size.y))
 	
 func _on_PopupMenu_id_pressed(id):
 	match id:
 		PopupIds.UPGRADE:
-			print("Upgrade")
+			_tower._upgrade()
 		PopupIds.REMOVE:
 			Tower_Controller._remove(_position,_tower,_tower.player)
 		

@@ -7,7 +7,7 @@ extends Area2D
 ##     Enables the tower to shoot the first unit that is in it's range
 
 ## Damage value of the tower. Can be changed in inspector
-export (float) var e_damage = 1;
+export (float) var e_damage;
 onready var menu = get_node("/root/World/PopupMenu")
 onready var area=get_node("/root/World/Towers")
 ## Damage value of the tower
@@ -15,7 +15,7 @@ onready var damage = e_damage
 onready var player
 var cost = 300
 var refund = cost/2
-
+var upgrade_cost=200
 ## The tower shoots the furthest unit in its range 
 func shoot():
 	var units = get_overlapping_bodies();
@@ -27,14 +27,26 @@ func shoot():
 		enemy_units[0].take_damage(damage)
 		print("I SHOT " + enemy_units[0].get_name())
 func _destroy():
-	#--Give player money here when its implemented
+	refund=cost/2
+	player.add_gold(refund)
 	queue_free()
+func _upgrade():
+	if upgrade_cost > player.gold:
+		return
+	player.decrease_gold(upgrade_cost)
+	damage+=1
+	cost+=upgrade_cost
+	upgrade_cost+=100
+	print(cost)
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_RIGHT:
-		var mouse_pos = get_global_mouse_position()
-		var tile_pos = area.map_to_world(area.world_to_map(mouse_pos))
-		if tile_pos == get_position():
-			menu._popup(self,tile_pos)
+	if event is InputEventMouseButton and event.is_pressed():
+		get_children()[2].visible=false
+		if event.button_index == BUTTON_RIGHT:
+			var mouse_pos = get_global_mouse_position()
+			var tile_pos = area.map_to_world(area.world_to_map(mouse_pos))
+			if tile_pos == get_position():
+				menu._popup(self,tile_pos)
+				get_children()[2].visible=true
 
 func set_player(player):
 	self.player = player
