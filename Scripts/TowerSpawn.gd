@@ -32,8 +32,9 @@ func _unhandled_input(event):
 				grass.set_cell(tile_pos.x/16, tile_pos.y/16,-1)
 				_map_changed()
 	
-func _remove(tile_pos,item):
+func _remove(tile_pos,item,_player):
 	item._destroy()
+	_player.towers.erase(item)
 	set_cell(tile_pos.x, tile_pos.y,-1)
 	grass.set_cell(tile_pos.x/16, tile_pos.y/16,0)
 	grass.update_bitmask_region(Vector2(0.0, 0.0),  Vector2(80,45))

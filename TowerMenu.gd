@@ -20,5 +20,5 @@ func _on_PopupMenu_id_pressed(id):
 		PopupIds.UPGRADE:
 			print("Upgrade")
 		PopupIds.REMOVE:
-			Tower_Controller._remove(_position,_tower)
+			Tower_Controller._remove(_position,_tower,_tower.player)
 		
