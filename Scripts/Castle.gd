@@ -33,3 +33,11 @@ func get_health():
 	
 func set_player(player):
 	self.player = player
+
+func save():
+	var save_dict = {
+		"health" : get_health() ,
+		"position.x" : get_position().x ,
+		"position.y" : get_position().y ,
+	}
+	return save_dict

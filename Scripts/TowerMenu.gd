@@ -14,6 +14,7 @@ func _popup(tower,position):
 	_position = position
 	_tower=tower
 	popup(Rect2(_position.x+10,_position.y+10,rect_size.x,rect_size.y))
+	print(tower.damage)
 	
 func _on_PopupMenu_id_pressed(id):
 	match id:

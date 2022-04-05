@@ -36,7 +36,20 @@ func _unhandled_input(event):
 				self.add_child(Tower_Instance)
 				set_cell(tile_pos.x, tile_pos.y,0)
 				_map_changed()
-	
+				
+func place_from_load(tower,current_player,color):
+			var Tower_Instance = Tower.instance()
+			grass.set_cell(tower["position.x"]/16, tower["position.y"]/16,-1)
+			Tower_Instance.get_child(0).texture = load(str('res://Map/',color,'_tower.png'))
+			current_player.append_tower(Tower_Instance)
+			Tower_Instance.set_player(current_player)
+			Tower_Instance.set_position(Vector2(tower["position.x"],tower["position.y"]))
+			self.add_child(Tower_Instance)
+			Tower_Instance._set_damage(tower["damage"])
+			Tower_Instance._set_cost(tower["cost"])
+			Tower_Instance._set_upgrade_cost(tower["upgrade_cost"])
+			set_cell(tower["position.x"], tower["position.y"],0)
+			_map_changed()
 func _remove(tile_pos,item,_player):
 	item._destroy()
 	_player.towers.erase(item)
@@ -58,3 +71,4 @@ func _new_turn():
 	
 func _map_changed():
 	emit_signal("map_changed")
+	

@@ -58,7 +58,10 @@ func decrease_gold(amount):
 func add_gold(amount):
 	self.gold += amount
 	update_gold_label()
-
+	
+func set_gold(amount):
+	self.gold = amount
+	update_gold_label()
 func update_gold_label():
 	get_child(0).text = str(self.gold)
 	
@@ -71,3 +74,15 @@ func update_hp_label():
 	
 func update_unit_count_label():
 	get_child(2).text = str(self.get_units_size())
+
+func save():
+	var tower_saves=[] 
+	for tower in towers:
+		tower_saves.append(tower.save())
+		
+	var save_dict = {
+		"castle" : castle.save(),
+		"gold" : gold,
+		"towers" : tower_saves
+	}
+	return save_dict
