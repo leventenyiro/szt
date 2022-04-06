@@ -8,8 +8,6 @@ func _on_Save_pressed():
 	var save_nodes = get_tree().get_nodes_in_group("Save")
 	for node in save_nodes:
 		# Check the node is an instanced scene so it can be instanced again during load.
-		
-
 		# Call the node's save function.
 		var node_data = node.call("save")
 
