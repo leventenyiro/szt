@@ -13,6 +13,8 @@ var tree_chance = 1
 var road_caps = Vector2(0.1,0.11)
 var castle_distance = 30
 
+var actual_distance
+
 onready var Castle =  preload("res://Scenes/Castle.tscn")
 
 func _ready():
@@ -140,6 +142,7 @@ func create_castles():
 		if distance(blue_position.x, blue_position.y, item.x, item.y) > castle_distance:
 			red_available_positions.append(item)
 	var red_position = red_available_positions[rand_range(0, red_available_positions.size())]
+	actual_distance = distance(blue_position.x, blue_position.y, red_position.x, red_position.y)
 	$RedCastle.set_cell(red_position.x, red_position.y, 0)
 	var red_castle = Castle.instance()
 	red_castle.set_position(Vector2(red_position.x * 16,red_position.y * 16))
