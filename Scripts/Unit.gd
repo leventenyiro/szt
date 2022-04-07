@@ -85,4 +85,11 @@ func align(paths):
 			if(new_paths[1].y-16==new_paths[2].y):
 				new_paths[1].y-=16
 	return new_paths
+func save():
+	var save_dict = {
+		"health" : get_health(),
+		"position.x" : get_position().x,
+		"position.y" :get_position().y
+	}
+	return save_dict
 	

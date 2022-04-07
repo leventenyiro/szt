@@ -40,6 +40,18 @@ func initialize_unit(current_player):
 	connect("map_changed", unit_instance, "update_path")
 	current_player.append_unit(unit_instance)
 	current_player.update_unit_count_label()
+func place_from_load(unit_dic,current_player,color):
+	var unit_instance = unit.instance()
+	unit_instance.set_player(current_player)
+	unit_instance.set_position(Vector2(unit_dic["position.x"],unit_dic["position.y"]))
+	unit_instance._set_health(unit_dic["health"])
+	unit_instance.goal = current_player.get_enemy().get_castle().get_position()
+	unit_instance.nav = nav
+	unit_instance.get_child(0).texture = load(str('res://Map/',color,'_unit.png'))
+	add_child(unit_instance)
+	connect("map_changed", unit_instance, "update_path")
+	current_player.append_unit(unit_instance)
+	current_player.update_unit_count_label()
 
 
 func _on_SimulateButton_pressed():

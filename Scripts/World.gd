@@ -1,6 +1,9 @@
 extends Node
 
-signal generation_complete
+signal New_game
+signal Load_game
+
+onready var loader = get_node("/root/World/Load_helper")
 
 var noise
 var map_size = Vector2(80,45)
@@ -12,21 +15,37 @@ var tree_cap = 0.002
 var tree_chance = 1
 var road_caps = Vector2(0.1,0.11)
 var castle_distance = 30
+var _seed
+var _load
 
 var actual_distance
 
 onready var Castle =  preload("res://Scenes/Castle.tscn")
 
 func _ready():
-	randomize()
-	noise = OpenSimplexNoise.new()
-	noise.seed = randi()
-	noise.octaves = 1.0
-	noise.period = 16
-	noise.persistence = 0.7
-	generate()
-	emit_signal('generation_complete')
-
+	if _load:
+		_seed = loader.get_seed()
+		randomize()
+		seed(_seed)
+		noise = OpenSimplexNoise.new()
+		noise.seed = randi()
+		noise.octaves = 1.0
+		noise.period = 16
+		noise.persistence = 0.7
+		generate()
+		emit_signal('Load_game')
+	else:
+		randomize()
+		_seed = randi()
+		seed(_seed)
+		noise = OpenSimplexNoise.new()
+		noise.seed = randi()
+		noise.octaves = 1.0
+		noise.period = 16
+		noise.persistence = 0.7
+		generate()
+		create_castles()
+		emit_signal('New_game')
 ## Generates the world props.
 ## @desc:
 ## 		Generates all the tilesets which the world is built from.
@@ -37,8 +56,6 @@ func generate():
 	create_water_map()
 	create_road_map()
 	create_prop_map()
-	create_castles()
-
 ## Generates the grass tiles.
 ## desc:
 ## 		Generates all the tiles for the grass tileset based on the randomized noise pattern.
@@ -148,4 +165,9 @@ func create_castles():
 	red_castle.set_position(Vector2(red_position.x * 16,red_position.y * 16))
 	red_castle.get_child(0).texture = load('res://Map/red_castle.png')
 	$RedCastle.add_child(red_castle)
-
+	
+func save():
+	var save_dict = {
+		"seed" : _seed,
+	}
+	return save_dict
