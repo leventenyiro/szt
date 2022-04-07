@@ -3,6 +3,7 @@ extends Node
 onready var blue_castle_tile = get_node("/root/World/BlueCastle")
 onready var red_castle_tile = get_node("/root/World/RedCastle")
 onready var tower_spawns = get_node("/root/World/Towers")
+onready var unit_spawns = get_node("/root/World/Nav")
 onready var Castle =  preload("res://Scenes/Castle.tscn")
 func get_seed():
 	var save_game = File.new()
@@ -51,5 +52,8 @@ func load_player(player,enemy,color,data,castle_tile):
 	player.set_gold(data["gold"])
 	for tower in data["towers"]:
 		tower_spawns.place_from_load(tower,player,color)
+		
+	for unit in data["units"]:
+		unit_spawns.place_from_load(unit,player,color)
 		
 	player.update_hp_label()

@@ -79,10 +79,15 @@ func save():
 	var tower_saves=[] 
 	for tower in towers:
 		tower_saves.append(tower.save())
+	
+	var unit_saves=[] 
+	for unit in units:
+		unit_saves.append(unit.save())
 		
 	var save_dict = {
 		"castle" : castle.save(),
 		"gold" : gold,
-		"towers" : tower_saves
+		"towers" : tower_saves,
+		"units" : unit_saves
 	}
 	return save_dict
