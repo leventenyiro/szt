@@ -1,9 +1,5 @@
 image: barichello/godot-ci:3.4.2
 
-# NOTE: the `cd` command in each build stage is not necessary if your
-# project.godot is at the repo root
-
-# Cache imported assets between runs
 cache:
   key: import-assets
   paths:
@@ -11,7 +7,7 @@ cache:
 
 stages:
   - export
-  - deploy
+  - test
 
 variables:
   EXPORT_NAME: gittest
@@ -25,3 +21,11 @@ windows:
     name: $EXPORT_NAME-$CI_JOB_NAME
     paths:
       - build/windows
+
+test:
+  stage: test
+  script:
+    - wget -O Gut.zip https://github.com/bitwes/Gut/archive/refs/tags/v7.2.0.zip
+    - unzip Gut.zip
+    - cp -a Gut-7.2.0/addons/ addons/
+    - godot -s addons/gut/gut_cmdln.gd -d --path $PWD -gtest=res://test/unit/test_game.gd -glog=1 -gexit
