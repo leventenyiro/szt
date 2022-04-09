@@ -33,6 +33,7 @@ func _ready():
 		noise.period = 16
 		noise.persistence = 0.7
 		generate()
+		$Nav/Grass.update_dirty_quadrants()
 		emit_signal('Load_game')
 	else:
 		randomize()
@@ -44,6 +45,7 @@ func _ready():
 		noise.period = 16
 		noise.persistence = 0.7
 		generate()
+		$Nav/Grass.update_dirty_quadrants()
 		create_castles()
 		emit_signal('New_game')
 ## Generates the world props.

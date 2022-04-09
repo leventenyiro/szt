@@ -33,22 +33,15 @@ func get_player(blue_player,red_player):
 	var player1 = parse_json(save_game.get_line())
 	var player2 = parse_json(save_game.get_line())
 		
-	load_player(blue_player,red_player,"blue",player1,blue_castle_tile)
-	load_player(red_player,blue_player,"red",player2,red_castle_tile)
+	load_castle(blue_player,red_player,"blue",player1,blue_castle_tile)
+	load_castle(red_player,blue_player,"red",player2,red_castle_tile)
+	
+	load_player(blue_player,"blue",player1)
+	load_player(red_player,"red",player2)
 	
 	save_game.close()
-func load_player(player,enemy,color,data,castle_tile):
-	player.set_enemy(enemy)
-		
-	castle_tile.set_cell(data["castle"]["position.x"]/16, data["castle"]["position.y"]/16, 0)
-	var blue_castle = Castle.instance()
-	blue_castle.set_position(Vector2(data["castle"]["position.x"],data["castle"]["position.y"]))
-	blue_castle.get_child(0).texture = load(str('res://Map/',color,'_castle.png'))
-	blue_castle_tile.add_child(blue_castle)
-	blue_castle._set_health(data["castle"]["health"])
-	blue_castle.set_player(player)
-	player.set_castle(blue_castle)
 	
+func load_player(player,color,data):	
 	player.set_gold(data["gold"])
 	for tower in data["towers"]:
 		tower_spawns.place_from_load(tower,player,color)
@@ -57,3 +50,15 @@ func load_player(player,enemy,color,data,castle_tile):
 		unit_spawns.place_from_load(unit,player,color)
 		
 	player.update_hp_label()
+func load_castle(player,enemy,color,data,castle_tile):
+	player.set_enemy(enemy)
+		
+	castle_tile.set_cell(data["castle"]["position.x"]/16, data["castle"]["position.y"]/16, 0)
+	var castle = Castle.instance()
+	castle.set_position(Vector2(data["castle"]["position.x"],data["castle"]["position.y"]))
+	castle.get_child(0).texture = load(str('res://Map/',color,'_castle.png'))
+	castle_tile.add_child(castle)
+	castle._set_health(data["castle"]["health"])
+	castle.set_player(player)
+	player.set_castle(castle)
+	

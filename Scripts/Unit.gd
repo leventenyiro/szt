@@ -51,6 +51,7 @@ func set_nav(new_nav):
 	if path.size() == 0:
 		kill()
 	path=align(path)
+	path.remove(0)
 	
 ## Moves the unit to the next tile in its path
 func update_path():
