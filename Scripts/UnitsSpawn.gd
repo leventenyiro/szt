@@ -56,22 +56,15 @@ func place_from_load(unit_dic,current_player,color):
 
 func _on_SimulateButton_pressed():
 	emit_signal('simulation_phase_start')
-	while turn_queue.blue_player.get_units_size() > 0 or turn_queue.red_player.get_units_size() > 0:
-		var t = Timer.new()
-		t.set_wait_time(0.1)
-		t.set_one_shot(true)
-		self.add_child(t)
-		t.start()
-		for x in range(turn_queue.blue_player.get_units_size()):
-			var current_unit = turn_queue.blue_player.get_unit(x)
-			if current_unit != null:
-				current_unit.move()
-		for x in range(turn_queue.red_player.get_units_size()):
-			var current_unit = turn_queue.red_player.get_unit(x)
-			if current_unit != null:
-				current_unit.move()
-		turn_queue.shoot_all_turrets()
-		yield(t,"timeout")
+	for x in range(turn_queue.blue_player.get_units_size()):
+		var current_unit = turn_queue.blue_player.get_unit(x)
+		if current_unit != null:
+			current_unit.move()
+	for x in range(turn_queue.red_player.get_units_size()):
+		var current_unit = turn_queue.red_player.get_unit(x)
+		if current_unit != null:
+			current_unit.move()
+	turn_queue.shoot_all_turrets()
 	emit_signal('simulation_phase_end')
 
 func disable_all():
