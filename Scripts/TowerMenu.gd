@@ -10,12 +10,17 @@ func _ready():
 	add_item("Upgrade",PopupIds.UPGRADE)
 	add_item("Remove",PopupIds.REMOVE)
 
+## Shows the tower's menu.
+## @desc:
+## 		Shows the clicked on tower's menu.
 func _popup(tower,position):
 	_position = position
 	_tower=tower
 	popup(Rect2(_position.x+10,_position.y+10,rect_size.x,rect_size.y))
-	print(tower.damage)
-	
+
+## Menu select.
+## @desc:
+## 		Checks what option was clicked in the menu and calls the appropriate function.
 func _on_PopupMenu_id_pressed(id):
 	match id:
 		PopupIds.UPGRADE:
