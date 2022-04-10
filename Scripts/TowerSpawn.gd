@@ -1,18 +1,15 @@
 extends TileMap
 
-##
-## Resposible for the tower's placement
-##
-## @desc:
-##     Creates a working tower on the tile the player has clicked
 
-## Preloading the tower
 signal map_changed
 onready var Tower =  preload("res://Scenes/MTower.tscn")
 onready var grass = get_node("/root/World/Nav/Grass")
 onready var turn_queue = get_node('/root/World/GameLogic/TurnQueue')
 onready var nav = get_node('/root/World/Nav')
-## On click creates a tower on the tile that was clicked 
+
+## Places a tower if possible.
+## @desc:
+## 		Places a tower on the clicked tile if possible.
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		var mouse_pos = get_viewport().get_mouse_position()
@@ -36,7 +33,10 @@ func _unhandled_input(event):
 				self.add_child(Tower_Instance)
 				set_cell(tile_pos.x, tile_pos.y,0)
 				_map_changed()
-				
+
+## Loads the tower.
+## @desc:
+## 		Loads the tower's data and initializes it.
 func place_from_load(tower,current_player,color):
 			var Tower_Instance = Tower.instance()
 			grass.set_cell(tower["position.x"]/16, tower["position.y"]/16,-1)
@@ -50,6 +50,10 @@ func place_from_load(tower,current_player,color):
 			Tower_Instance._set_upgrade_cost(tower["upgrade_cost"])
 			set_cell(tower["position.x"], tower["position.y"],0)
 			_map_changed()
+
+## Removes the tower from the players.
+## @desc:
+## 		Removes the tower from the '_player' thats on the 'tile_pos' position.
 func _remove(tile_pos,item,_player):
 	item._destroy()
 	_player.towers.erase(item)
@@ -57,6 +61,10 @@ func _remove(tile_pos,item,_player):
 	grass.set_cell(tile_pos.x/16, tile_pos.y/16,0)
 	grass.update_bitmask_region(Vector2(0.0, 0.0),  Vector2(80,45))
 	_map_changed()
+	
+## Checks if the tower is placeable.
+## @desc:
+## 		Checks if the tower is placeable, not placeable on water,near enemy towers/castle or outside of the player's own towers/castle range
 func _placeable(_player,tower_pos):
 	if _player.get_castle().get_position() == tower_pos:
 		return false
@@ -66,9 +74,16 @@ func _placeable(_player,tower_pos):
 		if turret.global_position.distance_to(Vector2(tower_pos.x, tower_pos.y)) <= 46:
 			return true
 	return false
+
+## Emits a 'new_turn' signal.
+## @desc:
+## 		Emits a 'new_turn' signal that end the current turn.
 func _new_turn():
 	emit_signal("new_turn")
-	
+
+## Emits a 'map_changed' signal.
+## @desc:
+## 		Emits a 'map_changed' signal that tells other nodes that the map has changed.
 func _map_changed():
 	emit_signal("map_changed")
 	

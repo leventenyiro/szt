@@ -16,7 +16,10 @@ onready var player
 var cost = 300
 var refund = cost/2
 var upgrade_cost=200 
-## The tower shoots the furthest unit in its range 
+
+## The tower shoots an enemy unit.
+## @desc:
+## 		The tower shoots the furthest enemy unit in its range.
 func shoot():
 	var units = get_overlapping_bodies();
 	var enemy_units = []
@@ -26,10 +29,18 @@ func shoot():
 	if enemy_units.size()>0:
 		enemy_units[0].take_damage(damage)
 		print("I SHOT " + enemy_units[0].get_name())
+		
+## Destroys the tower.
+## @desc:
+## 		 Destroys the tower and refunds half the gold invested in it.
 func _destroy():
 	refund=cost/2
 	player.add_gold(refund)
 	queue_free()
+	
+## Upgrades the tower's damage.
+## @desc:
+## 		 Upgrades the tower's damage by 1, each upgrade increases the cost by 100 gold.
 func _upgrade():
 	if upgrade_cost > player.gold:
 		return
@@ -37,6 +48,10 @@ func _upgrade():
 	damage+=1
 	cost+=upgrade_cost
 	upgrade_cost+=100
+
+## Shows the tower's range and menu.
+## @desc:
+## 		 Shows the tower's range and menu when clicked on.
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		get_children()[2].visible=false
@@ -47,14 +62,33 @@ func _unhandled_input(event):
 				menu._popup(self,tile_pos)
 				get_children()[2].visible=true
 
+## Sets the tower's player.
+## @desc:
+## 		Sets the tower's player.
 func set_player(player):
 	self.player = player
+
+## Sets the tower's damage.
+## @desc:
+## 		Sets the tower's damage to "damage" amount.
 func _set_damage(damage):
 	self.damage = damage
+	
+## Sets the tower's cost.
+## @desc:
+## 		Sets the tower's cost to "cost" amount.
 func _set_cost(cost):
 	self.cost = cost
+
+## Sets the tower's upgrade cost.
+## @desc:
+## 		Sets the tower's upgrade cost to "upgrade_cost" amount.
 func _set_upgrade_cost(upgrade_cost):
 	self.upgrade_cost = upgrade_cost
+
+## Saves the tower's data.
+## @desc:
+## 		Saves the tower's cost,upgrade cost,damage and position.
 func save():
 	var save_dict = {
 		"cost" : cost,

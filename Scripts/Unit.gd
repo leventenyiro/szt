@@ -1,26 +1,25 @@
 extends KinematicBody2D
-## Signal showing the units health updated
 signal healt_update(health)
-## Speed value of the Unit.Can be changed in inspector
 export (int) var speed = 150
-## Health value of the Unit.Can be changed in inspector
 export (int) var max_health = 3
-## Navigation for the unit
 var nav = null setget set_nav
-## Shortest path to the goal
 var path = []
-## The goal that the unit's move toward
 var goal = Vector2()
-## Health value of the unit.
 onready var health = max_health setget _set_health, get_health
 var player = null
 onready var damage_to_castle = 1
 var cost = 100
 var drop_amount = 100
-## Unit loses "amount" health points
+
+## The unit takes damage.
+## @desc:
+## 		The unit loses 'amount' amount of health.
 func take_damage(amount):
 	_set_health(health - amount)
-## Destroys the unit object
+	
+## Destroys the unit.
+## @desc:
+## 		Destroys the unit and gives gold to the player that destroyed it.
 func kill():
 	self.player.get_enemy().add_gold(self.drop_amount)
 	var enemy_castle = weakref(self.player.get_enemy().get_castle())
@@ -30,7 +29,9 @@ func kill():
 	self.player.update_unit_count_label()
 	queue_free()
 
-## Sets the unit's health to "value"
+## Set the unit's health.
+## @desc:
+## 		Set the unit's health to 'value' amount.
 func _set_health(value):
 	var prev_health = health;
 	health = clamp(value,0,max_health)
@@ -38,13 +39,28 @@ func _set_health(value):
 		emit_signal("healt_update",health)
 		if health == 0:
 			kill()
+
+## Returns the unit's health.
+## @desc:
+## 		Return the unit's health.
 func get_health():
 	return health
+
+## Set the unit's player.
+## @desc:
+## 		Set the unit's player.
 func set_player(player):
 	self.player = player
+	
+## Return the unit's player.
+## @desc:
+## 		Return the unit's player.
 func get_player():
 	return self.player
-## Sets the nav and calculates the path
+	
+## Sets the unit's navigation.
+## @desc:
+## 		Sets the unit's navigation that helps it move on the shortest path, if no path exists the unit gets destroyed.
 func set_nav(new_nav):
 	nav = new_nav
 	path = nav.get_simple_path(get_position(), goal, false)
@@ -53,13 +69,19 @@ func set_nav(new_nav):
 	path=align(path)
 	path.remove(0)
 	
-## Moves the unit to the next tile in its path
+## Updates the unit's path.
+## @desc:
+## 		Updates the unit's path to current shortest path, if no path exists the unit gets destroyed.
 func update_path():
 	path = nav.get_simple_path(get_position(), goal, false)
 	if path.size() == 0:
 		kill()
 	path=align(path)
 	path.remove(0)
+
+## Moves the unit.
+## @desc:
+## 		Moves the unit to the next tile on the shortest path, if no path exists the unit gets destroyed.
 func move():
 	path=align(path)
 	if path.size() > 1:
@@ -67,8 +89,10 @@ func move():
 		path.remove(0)
 	else:
 		kill()
-	
-	
+
+## Aligns the path.
+## @desc:
+## 		Aligns the path to the tilemap's coordinates.
 func align(paths):
 	var new_paths = []
 	var pre
@@ -86,6 +110,10 @@ func align(paths):
 			if(new_paths[1].y-16==new_paths[2].y):
 				new_paths[1].y-=16
 	return new_paths
+
+## Saves the unit's data.
+## @desc:
+## 		Saves the unit's health and position.
 func save():
 	var save_dict = {
 		"health" : get_health(),

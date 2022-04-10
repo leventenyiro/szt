@@ -48,6 +48,7 @@ func _ready():
 		$Nav/Grass.update_dirty_quadrants()
 		create_castles()
 		emit_signal('New_game')
+		
 ## Generates the world props.
 ## @desc:
 ## 		Generates all the tilesets which the world is built from.
@@ -168,6 +169,9 @@ func create_castles():
 	red_castle.get_child(0).texture = load('res://Map/red_castle.png')
 	$RedCastle.add_child(red_castle)
 	
+## Saves the seed
+## @desc:
+## 		Saves the current maps seed
 func save():
 	var save_dict = {
 		"seed" : _seed,

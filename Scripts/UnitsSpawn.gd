@@ -17,15 +17,24 @@ func _ready():
 	set_process_input(true)
 	connect("simulation_phase_start", self, 'disable_all')
 	connect("simulation_phase_end", self, 'enable_all')
-## Creates a unit every button click
+
+## Buys a unit.
+## @desc:
+## 		Buys a unit for the current player.
 func _on_BuyUnits_pressed():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player)
 
+## Updates the map.
+## @desc:
+## 		Updates the map if any changes happened.
 func _on_Towers_map_changed():
 	var current_player = turn_queue.current_player
 	emit_signal("map_changed")
-	
+
+## Initializes a unit.
+## @desc:
+## 		 Initializes a unit for the current player.
 func initialize_unit(current_player):
 	var unit_instance = unit.instance()
 	if unit_instance.cost > current_player.gold:
@@ -40,6 +49,10 @@ func initialize_unit(current_player):
 	connect("map_changed", unit_instance, "update_path")
 	current_player.append_unit(unit_instance)
 	current_player.update_unit_count_label()
+	
+## Loads the unit.
+## @desc:
+## 		Loads the unit's data and initializes it.
 func place_from_load(unit_dic,current_player,color):
 	var unit_instance = unit.instance()
 	unit_instance.set_player(current_player)
@@ -53,7 +66,9 @@ func place_from_load(unit_dic,current_player,color):
 	current_player.append_unit(unit_instance)
 	current_player.update_unit_count_label()
 
-
+## Simulates a turn.
+## @desc:
+## 		Simulates a turn where all units move one tile and all towers shoot once.
 func _on_SimulateButton_pressed():
 	emit_signal('simulation_phase_start')
 	for x in range(turn_queue.blue_player.get_units_size()):
@@ -67,11 +82,17 @@ func _on_SimulateButton_pressed():
 	turn_queue.shoot_all_turrets()
 	emit_signal('simulation_phase_end')
 
+## Disables all buttons.
+## @desc:
+## 		Disables all buttons from the menu.
 func disable_all():
 	self.simulate_button.disabled = true
 	self.end_turn.disabled = true
 	self.buy_units.disabled = true
-	
+
+## Enable all buttons.
+## @desc:
+## 		Enable all buttons from the menu.
 func enable_all():
 	if turn_queue.game_over:
 		return
