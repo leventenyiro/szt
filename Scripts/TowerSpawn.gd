@@ -86,4 +86,4 @@ func _new_turn():
 ## 		Emits a 'map_changed' signal that tells other nodes that the map has changed.
 func _map_changed():
 	emit_signal("map_changed")
-	
+

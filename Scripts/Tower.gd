@@ -10,6 +10,9 @@ extends Area2D
 export (float) var e_damage;
 onready var menu = get_node("/root/World/PopupMenu")
 onready var area = get_node("/root/World/Towers")
+signal healt_update(health)
+export (int) var max_health = 10
+onready var health = max_health setget _set_health, get_health
 ## Damage value of the tower
 onready var damage = e_damage
 onready var player
@@ -17,6 +20,33 @@ var cost = 300
 var refund = cost/2
 var upgrade_cost=200 
 
+func _ready():
+	$HealthBar.set_max(max_health)
+
+## The unit takes damage.
+## @desc:
+## 		The unit loses 'amount' amount of health.
+func take_damage():
+	_set_health(health - 1)
+	$HealthBar.value+=1
+
+## Set the towers's health.
+## @desc:
+## 		Set the towers's health to 'value' amount.
+func _set_health(value):
+	var prev_health = health;
+	health = clamp(value,0,max_health)
+	if health != prev_health:
+		emit_signal("healt_update",health)
+		if health == 0:
+			_destroy()
+
+## Returns the unit's health.
+## @desc:
+## 		Return the unit's health.
+func get_health():
+	return health
+	
 ## The tower shoots an enemy unit.
 ## @desc:
 ## 		The tower shoots the furthest enemy unit in its range.
@@ -29,6 +59,7 @@ func shoot():
 	if enemy_units.size()>0:
 		enemy_units[0].take_damage(damage)
 		print("I SHOT " + enemy_units[0].get_name())
+		print(enemy_units[0].get_health())
 		
 ## Destroys the tower.
 ## @desc:

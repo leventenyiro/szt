@@ -10,12 +10,16 @@ var player = null
 onready var damage_to_castle = 1
 var cost = 100
 var drop_amount = 100
-
+func _ready():
+	$HealthBar.set_max(max_health)
+	$HealthBar.visible=false
 ## The unit takes damage.
 ## @desc:
 ## 		The unit loses 'amount' amount of health.
 func take_damage(amount):
 	_set_health(health - amount)
+	$HealthBar.value+=amount
+	$HealthBar.visible=true
 	
 ## Destroys the unit.
 ## @desc:
