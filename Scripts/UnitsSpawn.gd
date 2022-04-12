@@ -22,6 +22,9 @@ func _ready():
 ## @desc:
 ## 		Buys a unit for the current player.
 func _on_BuyUnits_pressed():
+	self.buy_simple_unit()
+
+func buy_simple_unit():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player)
 
@@ -37,6 +40,7 @@ func _on_Towers_map_changed():
 ## 		 Initializes a unit for the current player.
 func initialize_unit(current_player):
 	var unit_instance = unit.instance()
+	print(unit_instance)
 	if unit_instance.cost > current_player.gold:
 		return
 	unit_instance.set_player(current_player)
