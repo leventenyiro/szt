@@ -22,10 +22,12 @@ custom_constants/separation = 0
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1280.0
 margin_bottom = 25.0
+mouse_filter = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3"]
 margin_right = 137.0
 margin_bottom = 25.0
+mouse_filter = 2
 size_flags_horizontal = 0
 
 [node name="EndTurn" type="Button" parent="VBoxContainer/HBoxContainer3/HBoxContainer2"]
@@ -45,6 +47,7 @@ text = "Simulate"
 margin_left = 404.0
 margin_right = 445.0
 margin_bottom = 25.0
+mouse_filter = 2
 size_flags_horizontal = 6
 
 [node name="Save" type="Button" parent="VBoxContainer/HBoxContainer3/HBoxContainer3"]
@@ -81,6 +84,7 @@ text = "Buy towers"
 margin_top = 25.0
 margin_right = 1280.0
 margin_bottom = 277.0
+mouse_filter = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/HBoxContainer2/EndTurn" to="." method="_on_EndTurn_pressed"]

@@ -27,6 +27,9 @@ func _process(_delta):
 	anchor_top = lerp(anchor_top, _target_anchor.x,self.popup_speed)
 	anchor_bottom = lerp(anchor_bottom, _target_anchor.y, self.popup_speed)
 
+func get_mode():
+	return self._mode
+
 func _on_Button_pressed():
 	if self._popped_up and self._mode == 1:
 		self._mode = 0

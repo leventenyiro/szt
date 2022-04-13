@@ -11,6 +11,7 @@
 [node name="PanelContainer" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 7 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -94,6 +95,7 @@ pause_mode = 2
 margin_top = 20.0
 margin_right = 95.0
 margin_bottom = 36.0
+mouse_filter = 2
 
 [node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
@@ -115,6 +117,7 @@ pause_mode = 2
 margin_top = 40.0
 margin_right = 95.0
 margin_bottom = 56.0
+mouse_filter = 2
 
 [node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
@@ -266,6 +269,7 @@ pause_mode = 2
 margin_right = 128.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
+mouse_filter = 2
 size_flags_horizontal = 4
 texture = ExtResource( 2 )
 expand = true
@@ -285,17 +289,20 @@ margin_left = 19.0
 margin_top = 150.0
 margin_right = 108.0
 margin_bottom = 206.0
+mouse_filter = 2
 size_flags_horizontal = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
 pause_mode = 2
 margin_right = 89.0
 margin_bottom = 16.0
+mouse_filter = 2
 
 [node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
+mouse_filter = 2
 texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
@@ -311,11 +318,13 @@ pause_mode = 2
 margin_top = 20.0
 margin_right = 89.0
 margin_bottom = 36.0
+mouse_filter = 2
 
 [node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
+mouse_filter = 2
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
@@ -331,11 +340,13 @@ pause_mode = 2
 margin_top = 40.0
 margin_right = 89.0
 margin_bottom = 56.0
+mouse_filter = 2
 
 [node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
+mouse_filter = 2
 texture = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
@@ -351,6 +362,7 @@ pause_mode = 2
 margin_top = 210.0
 margin_right = 128.0
 margin_bottom = 230.0
+mouse_filter = 2
 text = "Buy"
 
 [connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer/ButtonBuyNormal" to="." method="_on_ButtonBuyNormal_pressed"]
