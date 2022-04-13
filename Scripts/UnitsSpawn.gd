@@ -52,6 +52,7 @@ func initialize_unit(current_player):
 	connect("map_changed", unit_instance, "update_path")
 	current_player.append_unit(unit_instance)
 	current_player.update_unit_count_label()
+	current_player.update_units_count_same_tile_label()
 	
 ## Loads the unit.
 ## @desc:
