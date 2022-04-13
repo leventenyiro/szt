@@ -10,10 +10,10 @@
 [ext_resource path="res://Map/snow-expansion.png" type="Texture" id=8]
 [ext_resource path="res://Map/gold.png" type="Texture" id=9]
 [ext_resource path="res://Map/hp.png" type="Texture" id=10]
-[ext_resource path="res://Scripts/Save.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Load.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=13]
 [ext_resource path="res://themes/labeltheme.tres" type="Theme" id=14]
+[ext_resource path="res://Scenes/BuyPanel.tscn" type="PackedScene" id=15]
 
 [sub_resource type="NavigationPolygon" id=122]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -497,14 +497,6 @@ margin_right = 20.0
 margin_bottom = 20.0
 script = ExtResource( 4 )
 
-[node name="Save" type="Button" parent="."]
-margin_left = 1162.0
-margin_top = 540.0
-margin_right = 1268.0
-margin_bottom = 577.0
-text = "Save"
-script = ExtResource( 11 )
-
 [node name="Load_helper" type="Node" parent="."]
 script = ExtResource( 12 )
 
@@ -609,33 +601,17 @@ texture = ExtResource( 10 )
 position = Vector2( 1207, 161 )
 texture = ExtResource( 6 )
 
-[node name="EndTurnButton" type="Button" parent="GameLogic"]
-margin_left = 1176.0
-margin_top = 680.0
-margin_right = 1268.0
-margin_bottom = 708.0
-text = "end turn"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
 
-[node name="BuyUnits" type="Button" parent="GameLogic"]
-margin_left = 1177.0
-margin_top = 632.0
-margin_right = 1268.0
-margin_bottom = 662.0
-text = "buy unit"
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 
-[node name="SimulateButton" type="Button" parent="GameLogic"]
-margin_left = 1108.0
-margin_top = 595.0
-margin_right = 1268.0
-margin_bottom = 615.0
-disabled = true
-text = "simulate"
+[node name="Popup" parent="CanvasLayer/UI" instance=ExtResource( 15 )]
 
 [connection signal="Load_game" from="." to="GameLogic/TurnQueue" method="_on_World_Load_game"]
 [connection signal="New_game" from="." to="GameLogic/TurnQueue" method="_on_World_New_game"]
 [connection signal="map_changed" from="Towers" to="Nav" method="_on_Towers_map_changed"]
 [connection signal="id_pressed" from="PopupMenu" to="PopupMenu" method="_on_PopupMenu_id_pressed"]
-[connection signal="pressed" from="Save" to="Save" method="_on_Save_pressed"]
-[connection signal="pressed" from="GameLogic/EndTurnButton" to="GameLogic/TurnQueue" method="_on_EndTurnButton_pressed"]
-[connection signal="pressed" from="GameLogic/BuyUnits" to="Nav" method="_on_BuyUnits_pressed"]
-[connection signal="pressed" from="GameLogic/SimulateButton" to="Nav" method="_on_SimulateButton_pressed"]

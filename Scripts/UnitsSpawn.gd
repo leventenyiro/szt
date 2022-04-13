@@ -9,9 +9,11 @@ var unit = preload("res://Scenes/Unit.tscn")
 onready var nav = self
 
 onready var turn_queue = get_node('../GameLogic/TurnQueue')
-onready var simulate_button = get_node('../GameLogic/SimulateButton')
-onready var buy_units = get_node('../GameLogic/BuyUnits')
-onready var end_turn = get_node('../GameLogic/EndTurnButton')
+onready var end_turn = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/EndTurn')
+onready var simulate_button = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/Simulate')
+onready var buy_units = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button')
+onready var buy_towers = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button2')
+onready var popup = get_node('/root/World/CanvasLayer/UI/Popup')
 
 func _ready():
 	set_process_input(true)
@@ -21,7 +23,7 @@ func _ready():
 ## Buys a unit.
 ## @desc:
 ## 		Buys a unit for the current player.
-func _on_BuyUnits_pressed():
+func buy_simple_unit():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player)
 
@@ -37,6 +39,7 @@ func _on_Towers_map_changed():
 ## 		 Initializes a unit for the current player.
 func initialize_unit(current_player):
 	var unit_instance = unit.instance()
+	print(unit_instance)
 	if unit_instance.cost > current_player.gold:
 		return
 	unit_instance.set_player(current_player)
@@ -71,6 +74,10 @@ func place_from_load(unit_dic,current_player,color):
 ## 		Simulates a turn where all units move one tile and all towers shoot once.
 func _on_SimulateButton_pressed():
 	emit_signal('simulation_phase_start')
+	if self.popup.get_mode() == 1:
+		self.popup._on_Button2_pressed()
+	if self.popup.get_mode() == 0:
+		self.popup._on_Button_pressed()	
 	for x in range(turn_queue.blue_player.get_units_size()):
 		var current_unit = turn_queue.blue_player.get_unit(x)
 		if current_unit != null:

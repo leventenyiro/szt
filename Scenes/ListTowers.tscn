@@ -1,0 +1,315 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Map/blue_tower_large.png" type="Texture" id=1]
+[ext_resource path="res://Map/gold.png" type="Texture" id=2]
+[ext_resource path="res://Map/heart.png" type="Texture" id=3]
+[ext_resource path="res://Map/sword.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/ListTowers.gd" type="Script" id=5]
+
+[node name="PanelContainer" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+pause_mode = 2
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1273.0
+margin_bottom = 713.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+pause_mode = 2
+margin_left = 437.0
+margin_right = 829.0
+margin_bottom = 706.0
+mouse_filter = 2
+size_flags_horizontal = 6
+size_flags_vertical = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+pause_mode = 2
+margin_top = 238.0
+margin_right = 128.0
+margin_bottom = 468.0
+rect_pivot_offset = Vector2( -435, -21 )
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+pause_mode = 2
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+pause_mode = 2
+margin_top = 132.0
+margin_right = 128.0
+margin_bottom = 146.0
+text = "Small type"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+pause_mode = 2
+margin_left = 42.0
+margin_top = 150.0
+margin_right = 86.0
+margin_bottom = 206.0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+margin_right = 44.0
+margin_bottom = 16.0
+
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 44.0
+margin_bottom = 15.0
+text = "300"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 44.0
+margin_bottom = 36.0
+
+[node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 36.0
+margin_bottom = 15.0
+text = "10"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 44.0
+margin_bottom = 56.0
+
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 15.0
+text = "3"
+
+[node name="ButtonBuySmall" type="Button" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+pause_mode = 2
+margin_top = 210.0
+margin_right = 128.0
+margin_bottom = 230.0
+text = "Place down"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+pause_mode = 2
+margin_left = 132.0
+margin_top = 238.0
+margin_right = 260.0
+margin_bottom = 468.0
+rect_pivot_offset = Vector2( -435, -21 )
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
+pause_mode = 2
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
+pause_mode = 2
+margin_top = 132.0
+margin_right = 128.0
+margin_bottom = 146.0
+text = "Medium type"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
+pause_mode = 2
+margin_left = 42.0
+margin_top = 150.0
+margin_right = 86.0
+margin_bottom = 206.0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_right = 44.0
+margin_bottom = 16.0
+
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 44.0
+margin_bottom = 15.0
+text = "300"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 20.0
+margin_right = 44.0
+margin_bottom = 36.0
+
+[node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 36.0
+margin_bottom = 15.0
+text = "10"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 40.0
+margin_right = 44.0
+margin_bottom = 56.0
+
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 15.0
+text = "2"
+
+[node name="ButtonBuyMedium" type="Button" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
+pause_mode = 2
+margin_top = 210.0
+margin_right = 128.0
+margin_bottom = 230.0
+text = "Place down"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+pause_mode = 2
+margin_left = 264.0
+margin_top = 238.0
+margin_right = 392.0
+margin_bottom = 468.0
+rect_min_size = Vector2( 128, 0 )
+rect_pivot_offset = Vector2( -435, -21 )
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
+pause_mode = 2
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
+pause_mode = 2
+margin_top = 132.0
+margin_right = 128.0
+margin_bottom = 146.0
+text = "Large type"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
+pause_mode = 2
+margin_left = 42.0
+margin_top = 150.0
+margin_right = 86.0
+margin_bottom = 206.0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
+margin_right = 44.0
+margin_bottom = 16.0
+
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 44.0
+margin_bottom = 15.0
+text = "300"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
+margin_top = 20.0
+margin_right = 44.0
+margin_bottom = 36.0
+
+[node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 36.0
+margin_bottom = 15.0
+text = "10"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
+margin_top = 40.0
+margin_right = 44.0
+margin_bottom = 56.0
+
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 15.0
+text = "1"
+
+[node name="ButtonBuyLarge" type="Button" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
+pause_mode = 2
+margin_top = 210.0
+margin_right = 128.0
+margin_bottom = 230.0
+text = "Place down"
+
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer/ButtonBuySmall" to="." method="_on_ButtonBuySmall_pressed"]
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer2/ButtonBuyMedium" to="." method="_on_ButtonBuyMedium_pressed"]
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer3/ButtonBuyLarge" to="." method="_on_ButtonBuyLarge_pressed"]
