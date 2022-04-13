@@ -4,11 +4,11 @@ onready var current_player = null
 onready var turn = 0
 onready var blue_player = get_child(0)
 onready var red_player = get_child(1)
-onready var end_turn_button = get_node('../EndTurnButton')
-onready var simulate_button = get_node('../SimulateButton')
+onready var end_turn_button = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/EndTurn')
+onready var simulate_button = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/Simulate')
 onready var loader = get_node("/root/World/Load_helper")
-onready var buy_units = get_node('../BuyUnits')
 onready var game_over = false
+
 signal turn_switched
 signal game_over
 

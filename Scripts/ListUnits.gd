@@ -10,7 +10,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-
 func _on_ButtonBuyNormal_pressed():
 	emit_signal('buy_simple_unit')

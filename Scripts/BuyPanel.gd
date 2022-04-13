@@ -9,13 +9,19 @@ var _down_anchor = Vector2(1,1+menu_size)
 var _target_anchor = _down_anchor
 var _mode = -1
 
-onready var container = get_node("VBoxContainer/PanelContainer")
+onready var container = get_node("VBoxContainer/MarginContainer")
 onready var nav = get_node('/root/World/Nav')
+onready var turn_queue = get_node('/root/World/GameLogic/TurnQueue')
+onready var towers_map = get_node('/root/World/Towers')
 var list_towers = preload("res://Scenes/ListTowers.tscn")
 var list_units = preload("res://Scenes/ListUnits.tscn")
 
+signal turn_switched
+signal simulate
+
 func _ready():
-	pass
+	connect('turn_switched', turn_queue, '_on_EndTurnButton_pressed')
+	connect('simulate', nav, '_on_SimulateButton_pressed')
 
 func _process(_delta):
 	anchor_top = lerp(anchor_top, _target_anchor.x,self.popup_speed)
@@ -66,5 +72,16 @@ func _append_units():
 	
 func _append_towers():
 	var towers = list_towers.instance()
+	towers.connect('switch_current_tower', self.towers_map, 'switch_current')
 	self._clear_container()
 	self._add_container(towers)
+
+## Emits a 'turn_switched' signal.
+## @desc:
+## 		Emits a 'turn_switched' signal that switches the turn to the other player.
+func _on_EndTurn_pressed():
+	emit_signal('turn_switched')
+
+
+func _on_Simulate_pressed():
+	emit_signal('simulate')

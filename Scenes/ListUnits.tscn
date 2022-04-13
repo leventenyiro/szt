@@ -8,33 +8,39 @@
 [ext_resource path="res://Map/heart.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/ListUnits.gd" type="Script" id=7]
 
-[node name="HBoxContainer" type="HBoxContainer"]
-pause_mode = 2
+[node name="PanelContainer" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 script = ExtResource( 7 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 pause_mode = 2
-margin_left = 444.0
-margin_right = 836.0
-margin_bottom = 720.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1273.0
+margin_bottom = 713.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+pause_mode = 2
+margin_left = 437.0
+margin_right = 829.0
+margin_bottom = 706.0
 mouse_filter = 2
 size_flags_horizontal = 6
 size_flags_vertical = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
 pause_mode = 2
-margin_top = 245.0
+margin_top = 238.0
 margin_right = 128.0
-margin_bottom = 475.0
+margin_bottom = 468.0
 rect_pivot_offset = Vector2( -435, -21 )
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="TextureRectNormal" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+[node name="TextureRectNormal" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_right = 128.0
 margin_bottom = 128.0
@@ -45,7 +51,7 @@ texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_top = 132.0
 margin_right = 128.0
@@ -53,7 +59,7 @@ margin_bottom = 146.0
 text = "Normal unit"
 align = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_left = 16.0
 margin_top = 150.0
@@ -62,20 +68,20 @@ margin_bottom = 206.0
 mouse_filter = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_right = 95.0
 margin_bottom = 16.0
 mouse_filter = 2
 
-[node name="Gold" type="TextureRect" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -83,20 +89,20 @@ margin_right = 44.0
 margin_bottom = 15.0
 text = "100"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_top = 20.0
 margin_right = 95.0
 margin_bottom = 36.0
 
-[node name="Health" type="TextureRect" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource( 6 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -104,20 +110,20 @@ margin_right = 28.0
 margin_bottom = 15.0
 text = "3"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_top = 40.0
 margin_right = 95.0
 margin_bottom = 56.0
 
-[node name="Gold" type="TextureRect" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -125,7 +131,7 @@ margin_right = 95.0
 margin_bottom = 15.0
 text = "1 (to castle)"
 
-[node name="ButtonBuyNormal" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="ButtonBuyNormal" type="Button" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_top = 210.0
 margin_right = 128.0
@@ -133,18 +139,18 @@ margin_bottom = 230.0
 mouse_filter = 1
 text = "Buy"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_left = 132.0
-margin_top = 245.0
+margin_top = 238.0
 margin_right = 260.0
-margin_bottom = 475.0
+margin_bottom = 468.0
 rect_pivot_offset = Vector2( -435, -21 )
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="TextureRectTower" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+[node name="TextureRectTower" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
 pause_mode = 2
 margin_right = 128.0
 margin_bottom = 128.0
@@ -155,7 +161,7 @@ texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
 pause_mode = 2
 margin_top = 132.0
 margin_right = 128.0
@@ -163,7 +169,7 @@ margin_bottom = 146.0
 text = "Destroyer unit"
 align = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
 pause_mode = 2
 margin_left = 14.0
 margin_top = 150.0
@@ -172,20 +178,20 @@ margin_bottom = 206.0
 mouse_filter = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
 pause_mode = 2
 margin_right = 100.0
 margin_bottom = 16.0
 mouse_filter = 2
 
-[node name="Gold" type="TextureRect" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -193,21 +199,21 @@ margin_right = 44.0
 margin_bottom = 15.0
 text = "100"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
 pause_mode = 2
 margin_top = 20.0
 margin_right = 100.0
 margin_bottom = 36.0
 mouse_filter = 2
 
-[node name="Health" type="TextureRect" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+[node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource( 6 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -215,21 +221,21 @@ margin_right = 28.0
 margin_bottom = 15.0
 text = "3"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
 pause_mode = 2
 margin_top = 40.0
 margin_right = 100.0
 margin_bottom = 56.0
 mouse_filter = 2
 
-[node name="Gold" type="TextureRect" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -237,25 +243,25 @@ margin_right = 100.0
 margin_bottom = 15.0
 text = "1 (to towers)"
 
-[node name="ButtonBuyTower" type="Button" parent="HBoxContainer/VBoxContainer2"]
+[node name="ButtonBuyTower" type="Button" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
 pause_mode = 2
 margin_top = 210.0
 margin_right = 128.0
 margin_bottom = 230.0
 text = "Buy"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_left = 264.0
-margin_top = 245.0
+margin_top = 238.0
 margin_right = 392.0
-margin_bottom = 475.0
+margin_bottom = 468.0
 rect_pivot_offset = Vector2( -435, -21 )
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="TextureRectAttacker" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+[node name="TextureRectAttacker" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
 pause_mode = 2
 margin_right = 128.0
 margin_bottom = 128.0
@@ -265,7 +271,7 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
 pause_mode = 2
 margin_top = 132.0
 margin_right = 128.0
@@ -273,7 +279,7 @@ margin_bottom = 146.0
 text = "Fighter unit"
 align = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
 pause_mode = 2
 margin_left = 19.0
 margin_top = 150.0
@@ -281,18 +287,18 @@ margin_right = 108.0
 margin_bottom = 206.0
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer3/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
 pause_mode = 2
 margin_right = 89.0
 margin_bottom = 16.0
 
-[node name="Gold" type="TextureRect" parent="HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 texture = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -300,19 +306,19 @@ margin_right = 44.0
 margin_bottom = 15.0
 text = "100"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer3/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
 pause_mode = 2
 margin_top = 20.0
 margin_right = 89.0
 margin_bottom = 36.0
 
-[node name="Health" type="TextureRect" parent="HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
+[node name="Health" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 texture = ExtResource( 6 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer2"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -320,19 +326,19 @@ margin_right = 28.0
 margin_bottom = 15.0
 text = "3"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer3/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
 pause_mode = 2
 margin_top = 40.0
 margin_right = 89.0
 margin_bottom = 56.0
 
-[node name="Gold" type="TextureRect" parent="HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
+[node name="Gold" type="TextureRect" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
 margin_right = 16.0
 margin_bottom = 16.0
 texture = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer/HBoxContainer3"]
 pause_mode = 2
 margin_left = 20.0
 margin_top = 1.0
@@ -340,11 +346,11 @@ margin_right = 89.0
 margin_bottom = 15.0
 text = "1 (to units)"
 
-[node name="ButtonBuyAttacker" type="Button" parent="HBoxContainer/VBoxContainer3"]
+[node name="ButtonBuyAttacker" type="Button" parent="HBoxContainer/HBoxContainer/VBoxContainer3"]
 pause_mode = 2
 margin_top = 210.0
 margin_right = 128.0
 margin_bottom = 230.0
 text = "Buy"
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/ButtonBuyNormal" to="." method="_on_ButtonBuyNormal_pressed"]
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer/ButtonBuyNormal" to="." method="_on_ButtonBuyNormal_pressed"]

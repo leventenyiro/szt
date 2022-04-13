@@ -7,6 +7,10 @@ onready var grass = get_node("/root/World/Nav/Grass")
 onready var turn_queue = get_node('/root/World/GameLogic/TurnQueue')
 onready var nav = get_node('/root/World/Nav')
 
+func switch_current(type):
+	self.Tower = load(str("res://Scenes/", type, "Tower.tscn"))
+	print(self.Tower)
+
 ## Places a tower if possible.
 ## @desc:
 ## 		Places a tower on the clicked tile if possible.

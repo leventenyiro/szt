@@ -9,9 +9,10 @@ var unit = preload("res://Scenes/Unit.tscn")
 onready var nav = self
 
 onready var turn_queue = get_node('../GameLogic/TurnQueue')
-onready var simulate_button = get_node('../GameLogic/SimulateButton')
-onready var buy_units = get_node('../GameLogic/BuyUnits')
-onready var end_turn = get_node('../GameLogic/EndTurnButton')
+onready var end_turn = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/EndTurn')
+onready var simulate_button = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/Simulate')
+onready var buy_units = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button')
+onready var buy_towers = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button2')
 
 func _ready():
 	set_process_input(true)
@@ -21,9 +22,6 @@ func _ready():
 ## Buys a unit.
 ## @desc:
 ## 		Buys a unit for the current player.
-func _on_BuyUnits_pressed():
-	self.buy_simple_unit()
-
 func buy_simple_unit():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player)
