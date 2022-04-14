@@ -125,6 +125,19 @@ func update_hp_label():
 func update_unit_count_label():
 	get_child(2).text = str(self.get_units_size())
 
+## Updates the units count same tile label.
+## @desc:
+## 		Updates the units count same tile label of the player's to it's current unit count on per tile.
+func update_units_count_same_tile_label():
+	for x in range(self.get_units_size()):
+		var count_same_pos = 0
+		var current_unit = self.get_unit(x)
+		if current_unit != null:
+			for y in range(self.get_units_size()):
+				if current_unit.get_position() == self.get_unit(y).get_position():
+					count_same_pos += 1
+			current_unit.get_child(3).text = str(count_same_pos)
+
 ## Saves the player.
 ## @desc:
 ## 		Saves the player's castle,towers,units and gold.

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Unit.gd" type="Script" id=1]
 [ext_resource path="res://Map/over.png" type="Texture" id=2]
 [ext_resource path="res://Map/progress.png" type="Texture" id=3]
+[ext_resource path="res://themes/labeltheme.tres" type="Theme" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 28, 28 )
@@ -27,3 +28,13 @@ margin_bottom = 3.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
 fill_mode = 1
+
+[node name="UnitsCountSameTile" type="Label" parent="."]
+margin_left = 16.0
+margin_top = -10.0
+margin_right = 34.0
+margin_bottom = 4.0
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
