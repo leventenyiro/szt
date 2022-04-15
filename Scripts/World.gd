@@ -4,6 +4,7 @@ signal New_game
 signal Load_game
 
 onready var loader = get_node("/root/World/Load_helper")
+onready var nav = get_node("/root/World/Nav")
 
 var noise
 var map_size = Vector2(80,45)
@@ -151,16 +152,25 @@ func create_castles():
 		for j in range(3,map_size.y - 3):
 			if $Water.get_cell(i, j) == -1 and !tree_in_range(i, j, 2):
 				available_positions.append(Vector2(i, j))
+	
 	var blue_position = available_positions[rand_range(0, available_positions.size())]
+	
+	var red_available_positions = []
+	for item in available_positions:
+		var path = nav.get_simple_path(blue_position,item,false)
+		if  distance(blue_position.x, blue_position.y, item.x, item.y) > castle_distance and path.size() > 0:
+			red_available_positions.append(item)
+	
+	if red_available_positions.size() == 0:
+		create_castles()
+		return
+	
 	$BlueCastle.set_cell(blue_position.x, blue_position.y, 0)
 	var blue_castle = Castle.instance()
 	blue_castle.set_position(Vector2(blue_position.x * 16,blue_position.y * 16))
 	blue_castle.get_child(0).texture = load('res://Map/blue_castle.png')
 	$BlueCastle.add_child(blue_castle)
-	var red_available_positions = []
-	for item in available_positions:
-		if distance(blue_position.x, blue_position.y, item.x, item.y) > castle_distance:
-			red_available_positions.append(item)
+			
 	var red_position = red_available_positions[rand_range(0, red_available_positions.size())]
 	actual_distance = distance(blue_position.x, blue_position.y, red_position.x, red_position.y)
 	$RedCastle.set_cell(red_position.x, red_position.y, 0)
