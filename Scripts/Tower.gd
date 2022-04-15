@@ -10,6 +10,8 @@ extends Area2D
 export (float) var e_damage;
 onready var menu = get_node("/root/World/PopupMenu")
 onready var area = get_node("/root/World/Towers")
+onready var grass = get_node('/root/World/Nav/Grass')
+onready var road = get_node('/root/World/Roads')
 signal healt_update(health)
 export (int) var max_health = 10
 onready var health = max_health setget _set_health, get_health
@@ -26,9 +28,9 @@ func _ready():
 ## The unit takes damage.
 ## @desc:
 ## 		The unit loses 'amount' amount of health.
-func take_damage():
-	_set_health(health - 1)
-	$HealthBar.value+=1
+func take_damage(damage):
+	_set_health(health - damage)
+	$HealthBar.value+=damage
 
 ## Set the towers's health.
 ## @desc:
@@ -67,6 +69,12 @@ func shoot():
 func _destroy():
 	refund=cost/2
 	player.add_gold(refund)
+	self.player.erase_tower(self)
+	grass.set_cell(self.get_position().x/16, self.get_position().y/16, 0)
+	road.set_cell(self.get_position().x/16, self.get_position().y/16, 0)
+	var map_size = Vector2(1280,720)
+	road.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
+	grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
 	queue_free()
 	
 ## Upgrades the tower's damage.

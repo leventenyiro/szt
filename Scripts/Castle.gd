@@ -26,8 +26,8 @@ func _set_health(value):
 ## @desc:
 ## 		The castle loses 'amount' amount of health.
 func take_damage(amount):
-	self.player.update_hp_label()
 	_set_health(health - amount)
+	self.player.update_hp_label()
 ## Destroys the castle.
 ## @desc:
 ## 		Emits a 'game over' signal then destroys the castle node.

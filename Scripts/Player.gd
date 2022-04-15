@@ -62,6 +62,9 @@ func get_castle():
 func get_units_size():
 	return self.units.size()
 
+func get_towers_size():
+	return self.towers.size()
+
 ## Returns a specific unit.
 ## @desc:
 ## 		Returns the 'x' positioned unit from the player's units.
@@ -77,6 +80,11 @@ func erase_unit(unit):
 	var i = units.find(unit)
 	if i >= 0:
 		self.units.remove(i)
+	
+func erase_tower(tower):
+	var i = towers.find(tower)
+	if i >= 0:
+		self.towers.remove(i)
 
 ## All towers shoot.
 ## @desc:
@@ -159,6 +167,18 @@ func closest_to_point(position):
 		if distance < closest_distance:
 			closest_distance = distance
 			closest = unit
+	return closest
+	
+func closest_tower_to_point(position):
+	if self.get_towers_size() == 0:
+		return false
+	var closest = self.towers[0]
+	var closest_distance = closest.get_position().distance_to(position)
+	for tower in towers:
+		var distance = tower.get_position().distance_to(position)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest = tower
 	return closest
 
 ## Saves the player.

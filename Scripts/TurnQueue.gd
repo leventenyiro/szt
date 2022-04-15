@@ -83,11 +83,16 @@ func get_current_unit_asset_path(type):
 			return 'res://Map/blue_troop_castle.png'
 		if type == 1:
 			return 'res://Map/blue_troop_troop.png'
+		if type == 2:
+			return 'res://Map/blue_troop_tower.png'
 	if self.turn % 2 == 1:
 		if type == 0:
 			return 'res://Map/red_troop_castle.png'
 		if type == 1:
 			return 'res://Map/red_troop_troop.png'
+		if type == 2:
+			return 'res://Map/red_troop_tower.png'
+		
 
 
 ## Returns the correct tower asset.
