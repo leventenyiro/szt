@@ -6,6 +6,8 @@ onready var enemy_player = null
 onready var castle = null
 onready var gold = 3000
 
+onready var nav = get_node("/root/World/Nav")
+
 func _ready():
 	update_gold_label()
 	update_unit_count_label()
@@ -73,7 +75,8 @@ func get_unit(x):
 ## 		Finds the unit in the array then removes it from the player.
 func erase_unit(unit):
 	var i = units.find(unit)
-	self.units.remove(i)
+	if i >= 0:
+		self.units.remove(i)
 
 ## All towers shoot.
 ## @desc:
@@ -137,6 +140,26 @@ func update_units_count_same_tile_label():
 				if current_unit.get_position() == self.get_unit(y).get_position():
 					count_same_pos += 1
 			current_unit.get_child(3).text = str(count_same_pos)
+
+func set_goals():
+	for unit in self.units:
+		nav.set_goal(unit, self)
+		
+func attack_with_units():
+	for x in self.units:
+		x.attack()
+
+func closest_to_point(position):
+	if self.get_units_size() == 0:
+		return false
+	var closest = self.units[0]
+	var closest_distance = closest.get_position().distance_to(position)
+	for unit in units:
+		var distance = unit.get_position().distance_to(position)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest = unit
+	return closest
 
 ## Saves the player.
 ## @desc:
