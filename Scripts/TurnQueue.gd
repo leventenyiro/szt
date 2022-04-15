@@ -6,6 +6,10 @@ onready var blue_player = get_child(0)
 onready var red_player = get_child(1)
 onready var end_turn_button = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/EndTurn')
 onready var simulate_button = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/Simulate')
+onready var buy_units = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button')
+onready var buy_towers = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button2')
+onready var save = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer3/Save')
+
 onready var loader = get_node("/root/World/Load_helper")
 onready var game_over = false
 
@@ -45,6 +49,18 @@ func increment_turn():
 func shoot_all_turrets():
 	red_player.shoot_turrets()
 	blue_player.shoot_turrets()
+	
+func attack_all_units():
+	red_player.attack_with_units()
+	blue_player.attack_with_units()
+	
+func set_all_goal():
+	red_player.set_goals()
+	blue_player.set_goals()
+	
+func update_all_labels():
+	red_player.update_units_count_same_tile_label()
+	blue_player.update_units_count_same_tile_label()
 
 ## Ends the game.
 ## @desc:
@@ -53,17 +69,25 @@ func end_game():
 	self.end_turn_button.disabled = true
 	self.simulate_button.disabled = true
 	self.buy_units.disabled = true
+	self.buy_towers.disabled = true
+	self.save.disabled = true
 	self.game_over = true
 	print('GAME OVER')
 
 ## Returns the correct unit asset.
 ## @desc:
 ## 		 Returns the correct unit asset depending on the current turn.
-func get_current_unit_asset_path():
+func get_current_unit_asset_path(type):
 	if self.turn % 2 == 0:
-		return 'res://Map/blue_troop_castle.png'
+		if type == 0:
+			return 'res://Map/blue_troop_castle.png'
+		if type == 1:
+			return 'res://Map/blue_troop_troop.png'
 	if self.turn % 2 == 1:
-		return 'res://Map/red_troop_castle.png'
+		if type == 0:
+			return 'res://Map/red_troop_castle.png'
+		if type == 1:
+			return 'res://Map/red_troop_troop.png'
 
 
 ## Returns the correct tower asset.

@@ -70,6 +70,7 @@ func _add_container(item):
 func _append_units():
 	var units = list_units.instance()
 	units.connect('buy_simple_unit', nav, 'buy_simple_unit')
+	units.connect("buy_attacker_unit", nav, 'buy_attacker_unit')
 	self._clear_container()
 	self._add_container(units)
 	

@@ -1,6 +1,7 @@
 extends Control
 
 signal buy_simple_unit
+signal buy_attacker_unit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,3 +13,7 @@ func _ready():
 #	pass
 func _on_ButtonBuyNormal_pressed():
 	emit_signal('buy_simple_unit')
+
+
+func _on_ButtonBuyAttacker_pressed():
+	emit_signal('buy_attacker_unit')

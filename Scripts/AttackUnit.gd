@@ -10,7 +10,9 @@ var player = null
 onready var damage_to_castle = 1
 var cost = 100
 var drop_amount = 100
-var type = 0
+onready var attack_range = get_node("Area2D")
+var damage = 1
+var type = 1
 func _ready():
 	$HealthBar.set_max(max_health)
 	$HealthBar.visible=false
@@ -79,8 +81,6 @@ func set_nav(new_nav):
 ## 		Updates the unit's path to current shortest path, if no path exists the unit gets destroyed.
 func update_path():
 	path = nav.get_simple_path(get_position(), goal, false)
-	if path.size() == 0:
-		kill()
 	path=align(path)
 	path.remove(0)
 
@@ -92,7 +92,7 @@ func move():
 	if path.size() > 1:
 		set_position(path[0])
 		path.remove(0)
-	else:
+	if self.get_position() == self.player.get_enemy().get_castle().get_position():
 		kill()
 
 ## Aligns the path.
@@ -115,9 +115,16 @@ func align(paths):
 			if(new_paths[1].y-16==new_paths[2].y):
 				new_paths[1].y-=16
 	return new_paths
-	
+
 func attack():
-	pass
+	var units = self.attack_range.get_overlapping_bodies();
+	var enemy_units = []
+	for unit in units:
+		if self.player.units.find(unit) == -1:
+			enemy_units.append(unit)
+	if enemy_units.size()>0:
+		enemy_units[0].take_damage(damage)
+		print("I ATTACKED " + enemy_units[0].get_name())
 
 ## Saves the unit's data.
 ## @desc:
