@@ -6,6 +6,7 @@ signal simulation_phase_end
 ## Preloading the unit
 var unit = preload("res://Scenes/Unit.tscn")
 var attack_unit = preload("res://Scenes/AttackUnit.tscn")
+var tower_unit = preload("res://Scenes/TowerUnit.tscn")
 ## Plane where the units navigate
 onready var nav = self
 
@@ -32,6 +33,10 @@ func buy_attacker_unit():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player, 1)
 
+func buy_tower_unit():
+	var current_player = turn_queue.current_player
+	initialize_unit(current_player, 2)
+
 ## Updates the map.
 ## @desc:
 ## 		Updates the map if any changes happened.
@@ -48,6 +53,8 @@ func initialize_unit(current_player, type):
 		unit_instance = unit.instance()
 	if type == 1:
 		unit_instance = attack_unit.instance()
+	if type == 2:
+		unit_instance = tower_unit.instance()
 	print(unit_instance)
 	if unit_instance.cost > current_player.gold:
 		return
@@ -69,6 +76,13 @@ static func set_goal(unit_instance, current_player):
 		return
 	if unit_instance.type == 1:
 		var closest = current_player.get_enemy().closest_to_point(unit_instance.get_position())
+		if closest:
+			unit_instance.goal = closest.get_position()
+		else:
+			unit_instance.goal = current_player.get_enemy().get_castle().get_position()
+		return
+	if unit_instance.type == 2:
+		var closest = current_player.get_enemy().closest_tower_to_point(unit_instance.get_position())
 		if closest:
 			unit_instance.goal = closest.get_position()
 		else:

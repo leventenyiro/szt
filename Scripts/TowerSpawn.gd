@@ -4,6 +4,7 @@ extends TileMap
 signal map_changed
 onready var Tower =  preload("res://Scenes/MTower.tscn")
 onready var grass = get_node("/root/World/Nav/Grass")
+onready var roads = get_node("/root/World/Roads")
 onready var turn_queue = get_node('/root/World/GameLogic/TurnQueue')
 onready var nav = get_node('/root/World/Nav')
 
@@ -25,6 +26,7 @@ func _unhandled_input(event):
 				if Tower_Instance.cost > current_player.gold or !_placeable(current_player,tile_pos) or _placeable(current_player.get_enemy(),tile_pos):
 					return
 				grass.set_cell(tile_pos.x/16, tile_pos.y/16,-1)
+				roads.set_cell(tile_pos.x/16, tile_pos.y/16,0)
 				var path = nav.get_simple_path(current_player.get_castle().get_position(), current_player.get_enemy().get_castle().get_position(), false)
 				if path.size()==0:
 					grass.set_cell(tile_pos.x/16, tile_pos.y/16,0)
@@ -33,6 +35,9 @@ func _unhandled_input(event):
 				current_player.append_tower(Tower_Instance)
 				Tower_Instance.set_player(current_player)
 				Tower_Instance.set_position(Vector2(tile_pos.x,tile_pos.y))
+				var map_size = Vector2(1280,720)
+				grass.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
+				roads.update_bitmask_region(Vector2(0.0, 0.0), Vector2(map_size.x, map_size.y))
 				current_player.decrease_gold(Tower_Instance.cost)
 				self.add_child(Tower_Instance)
 				set_cell(tile_pos.x, tile_pos.y,0)

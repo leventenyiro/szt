@@ -365,4 +365,5 @@ margin_bottom = 230.0
 text = "Buy"
 
 [connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer/ButtonBuyNormal" to="." method="_on_ButtonBuyNormal_pressed"]
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer2/ButtonBuyTower" to="." method="_on_ButtonBuyTower_pressed"]
 [connection signal="pressed" from="HBoxContainer/HBoxContainer/VBoxContainer3/ButtonBuyAttacker" to="." method="_on_ButtonBuyAttacker_pressed"]

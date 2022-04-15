@@ -1,4 +1,5 @@
 extends KinematicBody2D
+
 signal healt_update(health)
 export (int) var speed = 150
 export (int) var max_health = 3
@@ -12,7 +13,7 @@ var cost = 100
 var drop_amount = 100
 onready var attack_range = get_node("Area2D")
 var damage = 1
-var type = 1
+var type = 2
 func _ready():
 	$HealthBar.set_max(max_health)
 	$HealthBar.visible=false
@@ -117,14 +118,15 @@ func align(paths):
 	return new_paths
 
 func attack():
-	var units = self.attack_range.get_overlapping_bodies();
-	var enemy_units = []
-	for unit in units:
-		if self.player.units.find(unit) == -1 and unit.player != self.player:
-			enemy_units.append(unit)
-	if enemy_units.size()>0:
-		enemy_units[0].take_damage(damage)
-		print("I ATTACKED " + enemy_units[0].get_name())
+	var areas = self.attack_range.get_overlapping_areas();
+	var enemy_towers = []
+	for tower in areas:
+		if tower.get('player') != null:
+			if self.player.towers.find(tower) == -1 and self.player.units.find(tower.get_parent()) == -1 and self.player.get_enemy().units.find(tower.get_parent()) == -1 and tower != self.player.get_castle() and tower != self.player.get_enemy().get_castle() and tower.player != self.player:
+				enemy_towers.append(tower)
+	if enemy_towers.size()>0 and enemy_towers[0].has_method("take_damage"):
+		enemy_towers[0].take_damage(damage)
+		print("I ATTACKED " + enemy_towers[0].get_name())
 
 ## Saves the unit's data.
 ## @desc:
@@ -136,4 +138,3 @@ func save():
 		"position.y" :get_position().y
 	}
 	return save_dict
-	
