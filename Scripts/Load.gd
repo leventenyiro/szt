@@ -23,12 +23,7 @@ func get_current():
 	parse_json(save_game.get_line())
 	var current = parse_json(save_game.get_line())
 	var current_player
-	if current["current_player"] == 0:
-		current_player = 1
-	else:
-		current_player = 0
-	save_game.close()
-	return current_player
+	return current["current_player"] 
 ## Loads the players
 ## @desc:
 ## 		Loads the players from the save file and sets them.
@@ -51,8 +46,16 @@ func get_player(blue_player,red_player):
 ## @desc:
 ## 		Loads the player's units and towers and initializes them.
 func load_player(player,color,data):	
+	var type
 	player.set_gold(data["gold"])
 	for tower in data["towers"]:
+		if tower["type"] == 0:
+			type='S'
+		if tower["type"] == 1:
+			type='M'
+		if tower["type"] == 2:
+			type='L'
+		tower_spawns.switch_current(type)
 		tower_spawns.place_from_load(tower,player,color)
 		
 	for unit in data["units"]:

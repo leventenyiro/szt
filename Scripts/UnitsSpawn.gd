@@ -92,18 +92,29 @@ static func set_goal(unit_instance, current_player):
 ## Loads the unit.
 ## @desc:
 ## 		Loads the unit's data and initializes it.
-func place_from_load(unit_dic,current_player,color):
-	var unit_instance = unit.instance()
+func place_from_load(unit_dic,current_player,color):	
+	var unit_instance
+	var texture
+	if unit_dic["type"] == 0:
+		unit_instance = unit.instance()
+		texture = str('res://Map/',color,'_troop_castle.png')
+	if  unit_dic["type"] == 1:
+		unit_instance = attack_unit.instance()
+		texture = str('res://Map/',color,'_troop_troop.png')
+	if  unit_dic["type"] == 2:
+		unit_instance = tower_unit.instance()
+		texture = str('res://Map/',color,'_troop_tower.png')
+	print(unit_instance)
 	unit_instance.set_player(current_player)
 	unit_instance.set_position(Vector2(unit_dic["position.x"],unit_dic["position.y"]))
-	unit_instance._set_health(unit_dic["health"])
-	unit_instance.goal = current_player.get_enemy().get_castle().get_position()
+	set_goal(unit_instance, current_player)
 	unit_instance.nav = nav
-	unit_instance.get_child(0).texture = load(str('res://Map/',color,'_troop_castle.png'))
+	unit_instance.get_child(0).texture = load(texture)
 	add_child(unit_instance)
 	connect("map_changed", unit_instance, "update_path")
 	current_player.append_unit(unit_instance)
 	current_player.update_unit_count_label()
+	current_player.update_units_count_same_tile_label()
 
 ## Simulates a turn.
 ## @desc:

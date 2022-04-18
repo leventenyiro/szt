@@ -12,6 +12,7 @@ extents = Vector2( 28, 28 )
 z_index = 1
 script = ExtResource( 2 )
 e_damage = 1.0
+type = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 8, 8 )

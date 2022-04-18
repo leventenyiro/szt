@@ -134,6 +134,7 @@ func attack():
 func save():
 	var save_dict = {
 		"health" : get_health(),
+		"type" : self.type,
 		"position.x" : get_position().x,
 		"position.y" :get_position().y
 	}
