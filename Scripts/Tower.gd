@@ -8,6 +8,7 @@ extends Area2D
 
 ## Damage value of the tower. Can be changed in inspector
 export (float) var e_damage;
+export (int) var type;
 onready var menu = get_node("/root/World/PopupMenu")
 onready var area = get_node("/root/World/Towers")
 onready var grass = get_node('/root/World/Nav/Grass')
@@ -22,7 +23,9 @@ var cost = 300
 var refund = cost/2
 var upgrade_cost=200 
 
+
 func _ready():
+	print(type)
 	$HealthBar.set_max(max_health)
 
 ## The unit takes damage.
@@ -133,6 +136,7 @@ func save():
 		"cost" : cost,
 		"upgrade_cost" : upgrade_cost,
 		"damage" : damage,
+		"type" : self.type,
 		"position.x" : get_position().x,
 		"position.y" :get_position().y
 	}

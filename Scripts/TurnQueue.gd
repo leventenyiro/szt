@@ -118,11 +118,18 @@ func save():
 ## @desc:
 ## 		 Loads the players from the save file data.
 func _on_World_Load_game():
-	current_player = get_child(loader.get_current())
+	var current = loader.get_current()
+	current_player = get_child(current)
 	loader.get_player(blue_player,red_player)
 	connect("turn_switched", self, "switch_turn")
 	connect('game_over', self, 'end_game')
-	emit_signal("turn_switched")
+	if current == 0:
+		self.end_turn_button.disabled = false
+		self.simulate_button.disabled = true
+	else:
+		turn+=1
+		self.end_turn_button.disabled = true
+		self.simulate_button.disabled = false
 
 ## Creates the players.
 ## @desc:
