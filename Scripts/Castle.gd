@@ -9,7 +9,7 @@ onready var health = max_health setget _set_health
 onready var player = null
 
 func _ready():
-	var turn_queue = get_node('../../GameLogic/TurnQueue')
+	var turn_queue = get_node('/root/World/CanvasLayer/GameLogic/TurnQueue')
 	connect('game_over', turn_queue, 'end_game')
 
 ## Returns the health of the castle.

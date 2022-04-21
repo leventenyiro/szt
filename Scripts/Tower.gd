@@ -59,7 +59,7 @@ func shoot():
 	var units = get_overlapping_bodies();
 	var enemy_units = []
 	for unit in units:
-		if self.player.units.find(unit) == -1:
+		if self.player.units.find(unit) == -1 and !unit.is_in_group("NO"):
 			enemy_units.append(unit)
 	if enemy_units.size()>0:
 		enemy_units[0].take_damage(damage)

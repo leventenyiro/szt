@@ -11,7 +11,7 @@ var _mode = -1
 
 onready var container = get_node("VBoxContainer/MarginContainer")
 onready var nav = get_node('/root/World/Nav')
-onready var turn_queue = get_node('/root/World/GameLogic/TurnQueue')
+onready var turn_queue = get_node('/root/World/CanvasLayer/GameLogic/TurnQueue')
 onready var towers_map = get_node('/root/World/Towers')
 var list_towers = preload("res://Scenes/ListTowers.tscn")
 var list_units = preload("res://Scenes/ListUnits.tscn")

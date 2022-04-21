@@ -10,9 +10,11 @@ onready var buy_units = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer
 onready var buy_towers = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button2')
 onready var save = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer3/Save')
 
+onready var nav = get_node("/root/World/Nav")
+
 onready var loader = get_node("/root/World/Load_helper")
 onready var game_over = false
-
+onready var camera = get_node('/root/World/CameraDrag')
 signal turn_switched
 signal game_over
 
@@ -35,6 +37,8 @@ func switch_turn():
 	increment_turn()
 	end_turn_button.disabled = true
 	simulate_button.disabled = false
+	camera.get_child(0).zoom = Vector2(0.4,0.4)
+	camera.set_position(get_current_player().get_castle().get_position())
 
 ## Increments the turn counter.
 ## @desc:
@@ -138,8 +142,8 @@ func _on_World_New_game():
 	current_player = get_child(0)
 	self.blue_player.set_enemy(self.red_player)
 	self.red_player.set_enemy(self.blue_player)
-	var blue_castle = get_parent().get_parent().get_node("BlueCastle").get_child(0)
-	var red_castle = get_parent().get_parent().get_node("RedCastle").get_child(0)
+	var blue_castle = get_parent().get_parent().get_parent().get_node("BlueCastle").get_child(0)
+	var red_castle = get_parent().get_parent().get_parent().get_node("RedCastle").get_child(0)
 	self.blue_player.set_castle(blue_castle)
 	self.red_player.set_castle(red_castle)
 	blue_castle.set_player(blue_player)
@@ -148,3 +152,27 @@ func _on_World_New_game():
 	self.red_player.update_hp_label()
 	connect("turn_switched", self, "switch_turn")
 	connect('game_over', self, 'end_game')
+	showspawns()
+
+func showspawns():
+	var t = Timer.new()
+	t.set_wait_time(2)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	
+	camera.get_child(0).zoom = Vector2(0.6,0.6)
+	camera.set_position(get_current_player().get_castle().get_position())
+	
+	t = Timer.new()
+	t.set_wait_time(2)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	
+	camera.get_child(0).zoom = Vector2(0.6,0.6)
+	camera.set_position(get_current_player().get_enemy().get_castle().get_position())

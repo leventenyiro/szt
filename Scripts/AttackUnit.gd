@@ -120,7 +120,7 @@ func attack():
 	var units = self.attack_range.get_overlapping_bodies();
 	var enemy_units = []
 	for unit in units:
-		if self.player.units.find(unit) == -1 and unit.player != self.player:
+		if !unit.is_in_group("NO") and self.player.units.find(unit) == -1 and unit.player != self.player:
 			enemy_units.append(unit)
 	if enemy_units.size()>0:
 		enemy_units[0].take_damage(damage)

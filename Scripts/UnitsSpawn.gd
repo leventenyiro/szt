@@ -10,13 +10,13 @@ var tower_unit = preload("res://Scenes/TowerUnit.tscn")
 ## Plane where the units navigate
 onready var nav = self
 
-onready var turn_queue = get_node('../GameLogic/TurnQueue')
+onready var turn_queue = get_node('/root/World/CanvasLayer/GameLogic/TurnQueue')
 onready var end_turn = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/EndTurn')
 onready var simulate_button = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer2/Simulate')
 onready var buy_units = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button')
 onready var buy_towers = get_node('/root/World/CanvasLayer/UI/Popup/VBoxContainer/HBoxContainer3/HBoxContainer/Button2')
 onready var popup = get_node('/root/World/CanvasLayer/UI/Popup')
-
+onready var camera = get_node('/root/World/CameraDrag')
 func _ready():
 	set_process_input(true)
 	connect("simulation_phase_start", self, 'disable_all')
@@ -157,3 +157,12 @@ func enable_all():
 	self.end_turn.disabled = false
 	self.buy_units.disabled = false
 	self.turn_queue.increment_turn()
+	var t = Timer.new()
+	t.set_wait_time(1)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	camera.get_child(0).zoom = Vector2(0.4,0.4)
+	camera.set_position(turn_queue.get_current_player().get_castle().get_position())
