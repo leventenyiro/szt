@@ -157,11 +157,13 @@ func create_castles():
 	
 	var red_available_positions = []
 	for item in available_positions:
-		var path = nav.get_simple_path(blue_position,item,false)
-		if  distance(blue_position.x, blue_position.y, item.x, item.y) > castle_distance and path.size() > 0:
+		if  distance(blue_position.x, blue_position.y, item.x, item.y) > castle_distance:
 			red_available_positions.append(item)
+		
+	var red_position = red_available_positions[rand_range(0, red_available_positions.size())]
+	var path = nav.get_simple_path(blue_position*16,red_position*16,false)
 	
-	if red_available_positions.size() == 0:
+	if path.size() == 0:
 		create_castles()
 		return
 	
@@ -170,8 +172,8 @@ func create_castles():
 	blue_castle.set_position(Vector2(blue_position.x * 16,blue_position.y * 16))
 	blue_castle.get_child(0).texture = load('res://Map/blue_castle.png')
 	$BlueCastle.add_child(blue_castle)
-			
-	var red_position = red_available_positions[rand_range(0, red_available_positions.size())]
+
+	
 	actual_distance = distance(blue_position.x, blue_position.y, red_position.x, red_position.y)
 	$RedCastle.set_cell(red_position.x, red_position.y, 0)
 	var red_castle = Castle.instance()

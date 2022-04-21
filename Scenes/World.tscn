@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://Scripts/TowerSpawn.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/TurnQueue.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Map/snow-expansion.png" type="Texture" id=8]
 [ext_resource path="res://Map/gold.png" type="Texture" id=9]
 [ext_resource path="res://Map/hp.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Load.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=13]
 [ext_resource path="res://themes/labeltheme.tres" type="Theme" id=14]
@@ -290,7 +291,6 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 0/z_index = 0
 
 [sub_resource type="StreamTexture" id=3]
-flags = 4
 load_path = "res://.import/snow-expansion.png-803d8658d68e6e113f484137eea12d16.stex"
 
 [sub_resource type="TileSet" id=2]
@@ -427,6 +427,8 @@ resource_local_to_scene = true
 
 [sub_resource type="TileSet" id=121]
 
+[sub_resource type="RectangleShape2D" id=123]
+
 [node name="World" type="Node2D" groups=["Save"]]
 script = ExtResource( 5 )
 
@@ -500,15 +502,18 @@ script = ExtResource( 4 )
 [node name="Load_helper" type="Node" parent="."]
 script = ExtResource( 12 )
 
-[node name="GameLogic" type="Node" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
 
-[node name="TurnQueue" type="Node" parent="GameLogic" groups=["Save"]]
+[node name="GameLogic" type="Node" parent="CanvasLayer"]
+
+[node name="TurnQueue" type="Node" parent="CanvasLayer/GameLogic" groups=["Save"]]
 script = ExtResource( 2 )
 
-[node name="Player1" type="Node" parent="GameLogic/TurnQueue" groups=["Save"]]
+[node name="Player1" type="Node" parent="CanvasLayer/GameLogic/TurnQueue" groups=["Save"]]
 script = ExtResource( 13 )
 
-[node name="Gold" type="Label" parent="GameLogic/TurnQueue/Player1"]
+[node name="Gold" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player1"]
 margin_left = 1215.0
 margin_top = 20.0
 margin_right = 1254.0
@@ -516,7 +521,7 @@ margin_bottom = 34.0
 rect_pivot_offset = Vector2( 15, 24 )
 theme = ExtResource( 14 )
 
-[node name="HP" type="Label" parent="GameLogic/TurnQueue/Player1"]
+[node name="HP" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player1"]
 margin_left = 1215.0
 margin_top = 38.0
 margin_right = 1254.0
@@ -524,7 +529,7 @@ margin_bottom = 52.0
 rect_pivot_offset = Vector2( 46, 107 )
 theme = ExtResource( 14 )
 
-[node name="UnitCount" type="Label" parent="GameLogic/TurnQueue/Player1"]
+[node name="UnitCount" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player1"]
 margin_left = 1215.0
 margin_top = 56.0
 margin_right = 1254.0
@@ -532,7 +537,7 @@ margin_bottom = 70.0
 rect_pivot_offset = Vector2( 46, 89 )
 theme = ExtResource( 14 )
 
-[node name="PlayerLabel" type="Label" parent="GameLogic/TurnQueue/Player1"]
+[node name="PlayerLabel" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player1"]
 margin_left = 1189.0
 margin_top = 101.0
 margin_right = 1256.0
@@ -541,22 +546,22 @@ rect_pivot_offset = Vector2( -130, -10 )
 theme = ExtResource( 14 )
 text = "Red player"
 
-[node name="Sprite" type="Sprite" parent="GameLogic/TurnQueue/Player1"]
+[node name="Sprite" type="Sprite" parent="CanvasLayer/GameLogic/TurnQueue/Player1"]
 position = Vector2( 1206, 27 )
 texture = ExtResource( 9 )
 
-[node name="Sprite2" type="Sprite" parent="GameLogic/TurnQueue/Player1"]
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/GameLogic/TurnQueue/Player1"]
 position = Vector2( 1206, 45 )
 texture = ExtResource( 10 )
 
-[node name="Sprite3" type="Sprite" parent="GameLogic/TurnQueue/Player1"]
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/GameLogic/TurnQueue/Player1"]
 position = Vector2( 1206, 63 )
 texture = ExtResource( 7 )
 
-[node name="Player2" type="Node" parent="GameLogic/TurnQueue" groups=["Save"]]
+[node name="Player2" type="Node" parent="CanvasLayer/GameLogic/TurnQueue" groups=["Save"]]
 script = ExtResource( 13 )
 
-[node name="Gold" type="Label" parent="GameLogic/TurnQueue/Player2"]
+[node name="Gold" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player2"]
 margin_left = 1216.0
 margin_top = 118.0
 margin_right = 1256.0
@@ -564,7 +569,7 @@ margin_bottom = 132.0
 rect_pivot_offset = Vector2( -130, -10 )
 theme = ExtResource( 14 )
 
-[node name="HP" type="Label" parent="GameLogic/TurnQueue/Player2"]
+[node name="HP" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player2"]
 margin_left = 1216.0
 margin_top = 136.0
 margin_right = 1255.0
@@ -572,7 +577,7 @@ margin_bottom = 150.0
 rect_pivot_offset = Vector2( 46, 107 )
 theme = ExtResource( 14 )
 
-[node name="UnitCount" type="Label" parent="GameLogic/TurnQueue/Player2"]
+[node name="UnitCount" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player2"]
 margin_left = 1216.0
 margin_top = 154.0
 margin_right = 1255.0
@@ -580,7 +585,7 @@ margin_bottom = 168.0
 rect_pivot_offset = Vector2( 46, 89 )
 theme = ExtResource( 14 )
 
-[node name="PlayerLabel" type="Label" parent="GameLogic/TurnQueue/Player2"]
+[node name="PlayerLabel" type="Label" parent="CanvasLayer/GameLogic/TurnQueue/Player2"]
 margin_left = 1183.0
 margin_top = 3.0
 margin_right = 1255.0
@@ -589,20 +594,17 @@ rect_pivot_offset = Vector2( -130, -10 )
 theme = ExtResource( 14 )
 text = "Blue player"
 
-[node name="Sprite" type="Sprite" parent="GameLogic/TurnQueue/Player2"]
+[node name="Sprite" type="Sprite" parent="CanvasLayer/GameLogic/TurnQueue/Player2"]
 position = Vector2( 1207, 126 )
 texture = ExtResource( 9 )
 
-[node name="Sprite2" type="Sprite" parent="GameLogic/TurnQueue/Player2"]
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/GameLogic/TurnQueue/Player2"]
 position = Vector2( 1207, 144 )
 texture = ExtResource( 10 )
 
-[node name="Sprite3" type="Sprite" parent="GameLogic/TurnQueue/Player2"]
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/GameLogic/TurnQueue/Player2"]
 position = Vector2( 1207, 161 )
 texture = ExtResource( 6 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 128
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -611,7 +613,30 @@ mouse_filter = 2
 
 [node name="Popup" parent="CanvasLayer/UI" instance=ExtResource( 15 )]
 
-[connection signal="Load_game" from="." to="GameLogic/TurnQueue" method="_on_World_Load_game"]
-[connection signal="New_game" from="." to="GameLogic/TurnQueue" method="_on_World_New_game"]
+[node name="CameraDrag" type="KinematicBody2D" parent="." groups=["NO"]]
+position = Vector2( 653, 360 )
+script = ExtResource( 11 )
+
+[node name="Camera2D" type="Camera2D" parent="CameraDrag"]
+position = Vector2( 2, -3 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 720
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 4.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraDrag"]
+position = Vector2( -2, 4 )
+shape = SubResource( 123 )
+
+[connection signal="Load_game" from="." to="CanvasLayer/GameLogic/TurnQueue" method="_on_World_Load_game"]
+[connection signal="New_game" from="." to="CanvasLayer/GameLogic/TurnQueue" method="_on_World_New_game"]
 [connection signal="map_changed" from="Towers" to="Nav" method="_on_Towers_map_changed"]
 [connection signal="id_pressed" from="PopupMenu" to="PopupMenu" method="_on_PopupMenu_id_pressed"]

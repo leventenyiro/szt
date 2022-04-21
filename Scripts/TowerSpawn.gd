@@ -5,7 +5,7 @@ signal map_changed
 onready var Tower =  preload("res://Scenes/MTower.tscn")
 onready var grass = get_node("/root/World/Nav/Grass")
 onready var roads = get_node("/root/World/Roads")
-onready var turn_queue = get_node('/root/World/GameLogic/TurnQueue')
+onready var turn_queue = get_node('/root/World/CanvasLayer/GameLogic/TurnQueue')
 onready var nav = get_node('/root/World/Nav')
 
 func switch_current(type):
@@ -17,12 +17,12 @@ func switch_current(type):
 ## 		Places a tower on the clicked tile if possible.
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
-		var mouse_pos = get_viewport().get_mouse_position()
+		var mouse_pos = get_global_mouse_position()
 		var tile_pos = map_to_world(world_to_map(mouse_pos))
 		if event.button_index == BUTTON_LEFT:
 			if get_cell(tile_pos.x, tile_pos.y) == -1 and grass.get_cell(tile_pos.x/16, tile_pos.y/16) == 0: 
 				var Tower_Instance = Tower.instance()
-				var current_player = get_parent().get_node('GameLogic').get_child(0).get_current_player()
+				var current_player = get_parent().get_node("CanvasLayer").get_child(0).get_child(0).get_current_player()
 				if Tower_Instance.cost > current_player.gold or !_placeable(current_player,tile_pos) or _placeable(current_player.get_enemy(),tile_pos):
 					return
 				grass.set_cell(tile_pos.x/16, tile_pos.y/16,-1)
