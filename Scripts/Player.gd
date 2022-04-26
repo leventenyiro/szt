@@ -147,7 +147,7 @@ func update_units_count_same_tile_label():
 			for y in range(self.get_units_size()):
 				if current_unit.get_position() == self.get_unit(y).get_position():
 					count_same_pos += 1
-			current_unit.get_child(3).text = str(count_same_pos)
+			current_unit.get_child(4).text = str(count_same_pos)
 
 func set_goals():
 	for unit in self.units:
