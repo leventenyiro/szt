@@ -6,6 +6,7 @@ var nav = null setget set_nav
 var path = []
 var goal = Vector2()
 onready var health = max_health setget _set_health, get_health
+onready var line = get_node('Line2D')
 var player = null
 onready var damage_to_castle = 1
 var cost = 100
@@ -117,13 +118,19 @@ func align(paths):
 	return new_paths
 
 func attack():
+	line.visible = false
+	line.clear_points()
 	var units = self.attack_range.get_overlapping_bodies();
 	var enemy_units = []
 	for unit in units:
 		if !unit.is_in_group("NO") and self.player.units.find(unit) == -1 and unit.player != self.player:
 			enemy_units.append(unit)
 	if enemy_units.size()>0:
+		line.add_point(Vector2(8,8))
+		line.add_point(enemy_units[0].get_position()-(self.get_position()-Vector2(8,8)))
+		line.visible = true
 		enemy_units[0].take_damage(damage)
+		
 		print("I ATTACKED " + enemy_units[0].get_name())
 
 ## Saves the unit's data.

@@ -13,6 +13,7 @@ onready var menu = get_node("/root/World/PopupMenu")
 onready var area = get_node("/root/World/Towers")
 onready var grass = get_node('/root/World/Nav/Grass')
 onready var road = get_node('/root/World/Roads')
+onready var line = get_node('Line2D')
 signal healt_update(health)
 export (int) var max_health = 10
 onready var health = max_health setget _set_health, get_health
@@ -56,6 +57,8 @@ func get_health():
 ## @desc:
 ## 		The tower shoots the furthest enemy unit in its range.
 func shoot():
+	line.visible = false
+	line.clear_points()
 	var units = get_overlapping_bodies();
 	var enemy_units = []
 	for unit in units:
@@ -63,6 +66,9 @@ func shoot():
 			enemy_units.append(unit)
 	if enemy_units.size()>0:
 		enemy_units[0].take_damage(damage)
+		line.add_point(Vector2(8,8))
+		line.add_point(enemy_units[0].get_position()-(self.get_position()-Vector2(8,8)))
+		line.visible = true
 		print("I SHOT " + enemy_units[0].get_name())
 		print(enemy_units[0].get_health())
 		
