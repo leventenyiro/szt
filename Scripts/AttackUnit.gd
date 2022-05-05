@@ -116,7 +116,9 @@ func align(paths):
 			if(new_paths[1].y-16==new_paths[2].y):
 				new_paths[1].y-=16
 	return new_paths
-
+## Attacks an enemy unit.
+## @desc:
+## 		Attacks an enemy unit and follows it until the enemy unit dies
 func attack():
 	line.visible = false
 	line.clear_points()

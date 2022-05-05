@@ -53,15 +53,21 @@ func increment_turn():
 func shoot_all_turrets():
 	red_player.shoot_turrets()
 	blue_player.shoot_turrets()
-	
+## All units attack.
+## @desc:
+## 		 Both the red player's and the blue player's units attack.
 func attack_all_units():
 	red_player.attack_with_units()
 	blue_player.attack_with_units()
-	
+## All units get their goal set.
+## @desc:
+## 		 All units get their goal set depending on their type.
 func set_all_goal():
 	red_player.set_goals()
 	blue_player.set_goals()
-	
+## Updates the same_tile label.
+## @desc:
+## 		 Updates the label that shows how many units are on the same tile.
 func update_all_labels():
 	red_player.update_units_count_same_tile_label()
 	blue_player.update_units_count_same_tile_label()
@@ -153,7 +159,9 @@ func _on_World_New_game():
 	connect("turn_switched", self, "switch_turn")
 	connect('game_over', self, 'end_game')
 	showspawns()
-
+## Show the castles spawn.
+## @desc:
+## 		At the start of the game the camera zoom on each castle's spawn.
 func showspawns():
 	var t = Timer.new()
 	t.set_wait_time(2)

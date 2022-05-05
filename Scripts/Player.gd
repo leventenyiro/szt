@@ -148,15 +148,22 @@ func update_units_count_same_tile_label():
 				if current_unit.get_position() == self.get_unit(y).get_position():
 					count_same_pos += 1
 			current_unit.get_child(4).text = str(count_same_pos)
-
+			
+## Sets the player's units goals.
+## @desc:
+## 		Sets the player's units goals depending on its type.
 func set_goals():
 	for unit in self.units:
 		nav.set_goal(unit, self)
-		
+## All of the player's units attack.
+## @desc:
+## 		All of the player's units attack depending on its type.
 func attack_with_units():
 	for x in self.units:
 		x.attack()
-
+## Returns the closest unit.
+## @desc:
+## 		Returns the closest unit to "position" position.
 func closest_to_point(position):
 	if self.get_units_size() == 0:
 		return false
@@ -168,7 +175,9 @@ func closest_to_point(position):
 			closest_distance = distance
 			closest = unit
 	return closest
-	
+## Returns the closest tower.
+## @desc:
+## 		Returns the closest tower to "position" position.
 func closest_tower_to_point(position):
 	if self.get_towers_size() == 0:
 		return false

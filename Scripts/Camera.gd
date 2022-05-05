@@ -4,6 +4,9 @@ var dragging = false
 
 func _ready():
 	set_process_input(true)
+## Controls the camera.
+## @desc:
+## 		Controls the camera movement.
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():

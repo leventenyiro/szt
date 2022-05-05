@@ -22,17 +22,21 @@ func _ready():
 	connect("simulation_phase_start", self, 'disable_all')
 	connect("simulation_phase_end", self, 'enable_all')
 
-## Buys a unit.
+## Buys a simple unit.
 ## @desc:
-## 		Buys a unit for the current player.
+## 		Buys a simple unit for the current player.
 func buy_simple_unit():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player, 0)
-	
+## Buys a attacker unit.
+## @desc:
+## 		Buys a attacker unit for the current player.	
 func buy_attacker_unit():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player, 1)
-
+## Buys a tower unit.
+## @desc:
+## 		Buys a tower unit for the current player.
 func buy_tower_unit():
 	var current_player = turn_queue.current_player
 	initialize_unit(current_player, 2)
@@ -69,7 +73,9 @@ func initialize_unit(current_player, type):
 	current_player.append_unit(unit_instance)
 	current_player.update_unit_count_label()
 	current_player.update_units_count_same_tile_label()
-
+## Sets the unit's goal.
+## @desc:
+## 		Sets unit's goal depending on its type.
 static func set_goal(unit_instance, current_player):
 	if unit_instance.type == 0:
 		unit_instance.goal = current_player.get_enemy().get_castle().get_position()
