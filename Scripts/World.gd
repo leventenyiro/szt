@@ -131,21 +131,23 @@ func create_prop_map():
 							break
 				if chance < tree_chance and not tree_around:
 					$Trees.set_cell(x,y,0)
-
-## Generates the castle tiles.
+## Returns the distance between two points
 ## desc:
-## 		Generates all the tiles for the castle tilesets based on the randomized noise pattern.
-		
+## 		 Returns the distance between (x1,y1),(x2,y2) points
 func distance(x1, y1, x2, y2):
 	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2))
-
+## Checks if there is a tree in range
+## desc:
+## 		Checks if there is a tree from "n" "m" position in a "r" radius.
 func tree_in_range(n, m, r):
 	for i in range(n - r, n + r, 1):
 		for j in range(m - r, m + r, 1):
 			if $Trees.get_cell(i, j) != -1:
 				return true
 	return false
-	
+## Generates the castle tiles.
+## desc:
+## 		Generates all the tiles for the castle tilesets based on the randomized noise pattern.
 func create_castles():
 	var available_positions = []
 	for i in range(3,map_size.x - 3):

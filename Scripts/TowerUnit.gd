@@ -117,7 +117,9 @@ func align(paths):
 			if(new_paths[1].y-16==new_paths[2].y):
 				new_paths[1].y-=16
 	return new_paths
-
+## Attacks an enemy tower.
+## @desc:
+## 		Attacks an tower unit and shoots it until the enemy tower dies.
 func attack():
 	line.visible = false
 	line.clear_points()
